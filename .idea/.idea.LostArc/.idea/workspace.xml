@@ -22,13 +22,13 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="C++ Project.LostArc">
     <configuration name="LostArc" type="CppProject" factoryName="C++ Project">
       <configuration_1>
@@ -252,6 +252,7 @@
       <option name="presentableId" value="Default" />
       <updated>1650177269863</updated>
       <workItem from="1650177290456" duration="747000" />
+      <workItem from="1650543162001" duration="2893000" />
     </task>
     <servers />
   </component>
