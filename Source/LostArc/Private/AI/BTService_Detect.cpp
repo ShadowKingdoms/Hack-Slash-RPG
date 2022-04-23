@@ -29,7 +29,7 @@ void UBTService_Detect::TickNode(UBehaviorTreeComponent& OwnerComp, uint8* NodeM
 		{
 			PawnChannel = ECollisionChannel::ECC_GameTraceChannel5;
 		}
-		FDetectRadius = 2048.f;
+		FDetectRadius = 512.f;
 	}
 	else
 	{
