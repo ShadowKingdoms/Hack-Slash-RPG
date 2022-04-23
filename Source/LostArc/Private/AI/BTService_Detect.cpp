@@ -69,5 +69,5 @@ void UBTService_Detect::TickNode(UBehaviorTreeComponent& OwnerComp, uint8* NodeM
 		OwnerComp.GetBlackboardComponent()->SetValueAsObject(AMonsterBaseAIController::TargetKey, nullptr);
 	}
 	
-	DrawDebugSphere(World, Center, FDetectRadius, 64, FColor::Red, false, 0.2f);
+	//DrawDebugSphere(World, Center, FDetectRadius, 64, FColor::Red, false, 0.2f);
 }
