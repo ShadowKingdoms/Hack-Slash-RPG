@@ -8,7 +8,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d7b7930e-59a0-4cc7-a527-ba1b4b0ffe82" name="Changes" comment="" />
+    <list default="true" id="d7b7930e-59a0-4cc7-a527-ba1b4b0ffe82" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.LostArc/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.LostArc/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -255,9 +257,12 @@
       <workItem from="1650543162001" duration="3550000" />
       <workItem from="1650639900996" duration="944000" />
       <workItem from="1650730081116" duration="1081000" />
+      <workItem from="1650763504452" duration="4000" />
     </task>
     <servers />
   </component>
+  <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
+  <component name="UnityUnitTestConfiguration" currentTestLauncher="NUnit" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
   </component>
