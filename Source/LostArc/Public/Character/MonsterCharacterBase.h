@@ -29,6 +29,9 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	virtual void TheMonsterAttackHitCheck();
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void MonsterHPChanged();
 	
 	UFUNCTION(BlueprintImplementableEvent)
 	void DropPickupItem();
@@ -36,6 +39,9 @@ public:
 protected:
 	UPROPERTY(BlueprintReadWrite, meta = (AllowPrivateAccess = true))
 	float MonsterHP;
+
+	UPROPERTY(BlueprintReadWrite, meta = (AllowPrivateAccess = true))
+	float MonsterMaxHP;
 	
 	UPROPERTY(BlueprintReadWrite, meta = (AllowPrivateAccess = true))
 	float MonsterSpeed;
@@ -54,5 +60,7 @@ protected:
 	
 	UPROPERTY(VisibleAnywhere, meta = (AllowPrivateAccess = true))
 	class UMonsterBaseAnimInstance* MonsterAnim;
-	
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = UI, meta = (AllowPrivateAccess = true))
+	class UWidgetComponent* HPBarWidget;
 };

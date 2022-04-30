@@ -6,6 +6,8 @@
 #include "AnimInstances/MonsterBaseAnimInstance.h"
 #include "Components/CapsuleComponent.h"
 #include "Component/AIAbilityComponent.h"
+#include "Components/ProgressBar.h"
+#include "Components/WidgetComponent.h"
 #include "Controller/MonsterBaseAIController.h"
 #include "GameFramework/CharacterMovementComponent.h"
 
@@ -20,6 +22,17 @@ AMonsterCharacterBase::AMonsterCharacterBase()
 	GetCharacterMovement()->bUseControllerDesiredRotation = false;
 	GetCharacterMovement()->bOrientRotationToMovement = true;
 	bUseControllerRotationYaw = false;
+	
+	static ConstructorHelpers::FClassFinder<UUserWidget> UI_Reference(TEXT("WidgetBlueprint'/Game/UI/Monster/BP_MonsterHPBar.BP_MonsterHPBar_C'"));
+	if (UI_Reference.Succeeded())
+	{
+		HPBarWidget = CreateDefaultSubobject<UWidgetComponent>(TEXT("HPBARWIDGET"));
+		HPBarWidget->SetupAttachment(GetMesh());
+		HPBarWidget->SetWidgetSpace(EWidgetSpace::Screen);
+		HPBarWidget->SetWidgetClass(UI_Reference.Class);
+		HPBarWidget->SetRelativeLocation(FVector(0, 0, 1024));
+		HPBarWidget->SetDrawSize(FVector2D(100, 25));
+	}
 }
 
 void AMonsterCharacterBase::PostInitializeComponents()
@@ -31,6 +44,9 @@ void AMonsterCharacterBase::PostInitializeComponents()
 	{
 		MonsterAnim->OnMontageEnded.AddDynamic(this, &AMonsterCharacterBase::OnAttackMontageEnded);
 	}
+
+	MonsterMaxHP = MonsterHP;
+	
 }
 
 // Called when the game starts or when spawned
@@ -44,20 +60,21 @@ float AMonsterCharacterBase::TakeDamage(float DamageAmount, FDamageEvent const& 
 	float FFinalDamage = Super::TakeDamage(DamageAmount, DamageEvent, EventInstigator, DamageCauser);
 	
 	UE_LOG(LogTemp,Warning,TEXT("%f"), FFinalDamage);
-
+	
 	if (FFinalDamage > 0.f)
 	{
 		MonsterHP -= FFinalDamage;
+		
 		if(MonsterHP <= 0.f)
 		{
 			MonsterAnim->SetDeadAnim();
 			SetActorEnableCollision(false);
 			DropPickupItem();
-			
 			GetController()->Destroyed();
 		}
 	}
-
+	
+	MonsterHPChanged();
 	return FFinalDamage;
 }
 
