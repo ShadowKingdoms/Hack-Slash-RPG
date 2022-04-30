@@ -50,4 +50,7 @@ private:
 
 	UPROPERTY(BlueprintReadWrite, meta = (AllowPrivateAccess = true))
 	class ALostArcPlayerCharacter* PlayerData;
+
+	UPROPERTY(BlueprintReadWrite, meta = (AllowPrivateAccess = true))
+	class ULostArcUIMainHUD* UIData;
 };

@@ -19,7 +19,7 @@ public:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = UI)
 	TSubclassOf<class ULostArcUIMainHUD> MainHUDClass;
 
-	UPROPERTY()
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = UI)
 	class ULostArcUIMainHUD* MainHUD;
 
 	bool bOnSlotClick = false;

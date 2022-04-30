@@ -27,7 +27,7 @@ public:
 	FORCEINLINE class UCameraComponent* GetTopDownCameraComponent() const { return TopDownCameraComponent; }
 	FORCEINLINE class USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Component)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Component)
 	class ULostArcCharacterStatComponent* StatComponent;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Component)
@@ -36,13 +36,13 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	class ULostArcCharacterAnimInstance* AnimInstance;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Component)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Component)
 	class ULostArcQuickSlotComponent* QuickSlotComponent;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Component)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Component)
 	class ULostArcInventoryComponent* InventoryComponent;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Component)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Component)
 	class ULostArcCharacterEquipComponent* EquipComponent;
 
 private:
