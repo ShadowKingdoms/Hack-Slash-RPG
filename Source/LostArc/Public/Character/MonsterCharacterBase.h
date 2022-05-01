@@ -36,6 +36,9 @@ public:
 	UFUNCTION(BlueprintImplementableEvent)
 	void DropPickupItem();
 
+	void ToggleHPBarWidget(bool bVisibility);
+	float GetMonsterDetectRadius() { return MonsterDetectRadius; }
+
 protected:
 	UPROPERTY(BlueprintReadWrite, meta = (AllowPrivateAccess = true))
 	float MonsterHP;
@@ -57,6 +60,9 @@ protected:
 
 	UPROPERTY(BlueprintReadWrite, meta = (AllowPrivateAccess = true))
 	float MonsterRotateSpeed;
+
+	UPROPERTY(BlueprintReadWrite, meta = (AllowPrivateAccess = true))
+	float MonsterDetectRadius;
 	
 	UPROPERTY(VisibleAnywhere, meta = (AllowPrivateAccess = true))
 	class UMonsterBaseAnimInstance* MonsterAnim;

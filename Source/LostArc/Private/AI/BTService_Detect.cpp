@@ -17,43 +17,39 @@ void UBTService_Detect::TickNode(UBehaviorTreeComponent& OwnerComp, uint8* NodeM
 {
 	Super::TickNode(OwnerComp, NodeMemory, DeltaSeconds);
 
-	APawn* ControllingPawn = OwnerComp.GetAIOwner()->GetPawn();
+	AMonsterCharacterBase* ControllingPawn = Cast<AMonsterCharacterBase>(OwnerComp.GetAIOwner()->GetPawn());
 	if (ControllingPawn == nullptr) return;
 	
 	ECollisionChannel PawnChannel = ECollisionChannel::ECC_GameTraceChannel7;
 
-	auto bIsBoss = Cast<ABossMonsterCharacter>(ControllingPawn);
+	const auto bIsBoss = Cast<ABossMonsterCharacter>(ControllingPawn);
 	if(bIsBoss != nullptr)
 	{
 		if(bIsBoss->bBossIsDisable)
 		{
 			PawnChannel = ECollisionChannel::ECC_GameTraceChannel5;
 		}
-		FDetectRadius = 1024.f;
 	}
-	else
-	{
-		FDetectRadius = 1536.f;
-	}
-	
-	UWorld* World = ControllingPawn->GetWorld();
-	FVector Center = ControllingPawn->GetActorLocation();
-	FCollisionQueryParams CollisionQueryParams(NAME_None, false, ControllingPawn);
+
+	const UWorld* World = ControllingPawn->GetWorld();
+	const FVector Center = ControllingPawn->GetActorLocation();
+	const FCollisionQueryParams CollisionQueryParams(NAME_None, false, ControllingPawn);
 	TArray<FOverlapResult> OverlapResults;
 
-	bool bResult = World->OverlapMultiByChannel(OverlapResults, Center, FQuat::Identity, PawnChannel, FCollisionShape::MakeSphere(FDetectRadius), CollisionQueryParams);
+	const bool bResult = World->OverlapMultiByChannel(OverlapResults, Center, FQuat::Identity, PawnChannel, FCollisionShape::MakeSphere(ControllingPawn->GetMonsterDetectRadius()), CollisionQueryParams);
 
 	if (bResult)
 	{
 		for (auto OverlapResult : OverlapResults)
 		{
-			auto Player = Cast<ALostArcPlayerCharacter>(OverlapResult.GetActor());
+			const auto Player = Cast<ALostArcPlayerCharacter>(OverlapResult.GetActor());
 			if (Player && Player->GetController()->IsPlayerController())
 			{
 				OwnerComp.GetBlackboardComponent()->SetValueAsObject(AMonsterBaseAIController::TargetKey, Player); // TargetKey에 Player 정보를 저장한다. (Value로)
 				//DrawDebugSphere(World, Center, DetectRadius, 32, FColor::Green, false, 0.2f);
 				//DrawDebugPoint(World, Player->GetActorLocation(), 10.0f, FColor::Blue, false, 0.2f);
 				//DrawDebugLine(World, ControllingPawn->GetActorLocation(), Player->GetActorLocation(), FColor::Blue, false, 0.2f);
+				Cast<AMonsterCharacterBase>(ControllingPawn)->ToggleHPBarWidget(true);
 				return;
 			}
 			else
@@ -68,6 +64,5 @@ void UBTService_Detect::TickNode(UBehaviorTreeComponent& OwnerComp, uint8* NodeM
 	{
 		OwnerComp.GetBlackboardComponent()->SetValueAsObject(AMonsterBaseAIController::TargetKey, nullptr);
 	}
-	
 	//DrawDebugSphere(World, Center, FDetectRadius, 64, FColor::Red, false, 0.2f);
 }

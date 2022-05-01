@@ -27,7 +27,7 @@ void ULostArcCharacterEquipComponent::InitializeComponent()
 			EquipSlot.Find((EAccessoryType)i)->EquipArray.SetNum(*EquipMaxSlot.Find((EAccessoryType)i));
 		}
 	}
-
+	
 	Interface = Cast<ALostArcPlayerCharacter>(GetOwner())->InventoryComponent;
 }
 void ULostArcCharacterEquipComponent::EndPlay(EEndPlayReason::Type EndPlayReason)

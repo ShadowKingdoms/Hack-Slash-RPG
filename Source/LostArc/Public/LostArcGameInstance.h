@@ -46,11 +46,5 @@ public:
 
 private:
 	UPROPERTY()
-	class UDataTable* ArcCharacterTable;
-
-	UPROPERTY(BlueprintReadWrite, meta = (AllowPrivateAccess = true))
-	class ALostArcPlayerCharacter* PlayerData;
-
-	UPROPERTY(BlueprintReadWrite, meta = (AllowPrivateAccess = true))
-	class ULostArcUIMainHUD* UIData;
+	UDataTable* ArcCharacterTable;
 };

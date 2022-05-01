@@ -45,8 +45,7 @@ void AMonsterCharacterBase::PostInitializeComponents()
 		MonsterAnim->OnMontageEnded.AddDynamic(this, &AMonsterCharacterBase::OnAttackMontageEnded);
 	}
 
-	MonsterMaxHP = MonsterHP;
-	
+	HPBarWidget->SetVisibility(false);
 }
 
 // Called when the game starts or when spawned
@@ -118,4 +117,9 @@ void AMonsterCharacterBase::OnAttackMontageEnded(UAnimMontage* Montage, bool bIn
 			break;
 		}
 	}
+}
+
+void AMonsterCharacterBase::ToggleHPBarWidget(bool bVisibility)
+{
+	HPBarWidget->SetVisibility(bVisibility);
 }
