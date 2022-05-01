@@ -5,10 +5,11 @@
 #include "AnimInstances/BossMonsterAnimInstance.h"
 #include "Component/AIAbilityComponent.h"
 #include "Components/CapsuleComponent.h"
+#include "Components/WidgetComponent.h"
 #include "Controller/BossMonsterAIController.h"
 #include "GameFramework/CharacterMovementComponent.h"
 
-ABossMonsterCharacter::ABossMonsterCharacter():AMonsterCharacterBase()
+ABossMonsterCharacter::ABossMonsterCharacter() :AMonsterCharacterBase()
 {
 	// MonsterHP = 1000.f;
 	// GetCharacterMovement()->MaxWalkSpeed = 400.f; // 400.f

@@ -30,8 +30,8 @@ AMonsterCharacterBase::AMonsterCharacterBase()
 		HPBarWidget->SetupAttachment(GetMesh());
 		HPBarWidget->SetWidgetSpace(EWidgetSpace::Screen);
 		HPBarWidget->SetWidgetClass(UI_Reference.Class);
-		HPBarWidget->SetRelativeLocation(FVector(0, 0, 1024));
-		HPBarWidget->SetDrawSize(FVector2D(100, 25));
+		HPBarWidget->SetRelativeLocation(FVector(0, 0, 256));
+		HPBarWidget->SetDrawSize(FVector2D(96, 24));
 	}
 }
 
