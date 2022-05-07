@@ -7,8 +7,6 @@
 #include "Component/LostArcCharacterAbilityComponent.h"
 #include "MonsterBaseAnimInstance.generated.h"
 
-DECLARE_MULTICAST_DELEGATE(FOnMonsterDeadCheckDelegate)
-
 UCLASS()
 class LOSTARC_API UMonsterBaseAnimInstance : public UAnimInstance
 {
@@ -21,8 +19,6 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Montage, Meta = (AllowPrviateAccess = true))
 	UAnimMontage* MonsterDeathMontage;
 	
-	FOnMonsterDeadCheckDelegate OnMonsterDeadCheck;
-	
 	UMonsterBaseAnimInstance();
 	virtual void PlayAttackMontage();
 	int32 GetBasicAttackMontageSize();
@@ -31,4 +27,7 @@ public:
 protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Montage, Meta = (AllowPrviateAccess = true))
 	TArray<UAnimMontage*> MonsterBasicAttackMontages;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Montage, Meta = (AllowPrviateAccess = true))
+	TArray<UAnimMontage*> MonsterDeathMontages;
 };

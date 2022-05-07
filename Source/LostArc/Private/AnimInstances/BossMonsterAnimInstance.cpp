@@ -14,7 +14,7 @@ void UBossMonsterAnimInstance::PlayAttackMontage()
 	Montage_Play(MonsterBasicAttackMontages[Index], 1.f);
 }
 
-void UBossMonsterAnimInstance::AnimNotify_Skill_2_EffectCheck()
+void UBossMonsterAnimInstance::AnimNotify_MonsterDeadCheck()
 {
     auto BossMonster = Cast<ABossMonsterCharacter>(GetOwningActor());
 	BossMonster->MonsterMeteorEffect();

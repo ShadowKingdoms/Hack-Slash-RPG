@@ -31,7 +31,7 @@ public:
 	virtual void PlayAttackMontage() override;
 	
 	UFUNCTION()
-	virtual void AnimNotify_Skill_2_EffectCheck();
+	virtual void AnimNotify_MonsterDeadCheck();
 
 	UFUNCTION()
 	virtual void AnimNotify_Skill_3_EffectCheck();

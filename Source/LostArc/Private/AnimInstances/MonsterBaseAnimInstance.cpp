@@ -16,6 +16,10 @@ void UMonsterBaseAnimInstance::PlayAttackMontage()
 void UMonsterBaseAnimInstance::SetDeadAnim()
 {
 	bMonsterIsDead = true;
+	// const auto RandRange = FMath::RandRange(1, 4);
+	//
+	// Montage_Play(MonsterDeathMontage, 1.f);
+	// Montage_JumpToSection(FName(*FString::Printf(TEXT("Death_%d"), RandRange)), MonsterDeathMontage);
 }
 
 int32 UMonsterBaseAnimInstance::GetBasicAttackMontageSize()

@@ -114,8 +114,13 @@ void AMonsterCharacterBase::OnAttackMontageEnded(UAnimMontage* Montage, bool bIn
 		if (Montage->IsValidSectionName(FName(FString::Printf(TEXT("Attack_%d"), i))))
 		{
 			OnBasicAttackEnd.Broadcast();
-			break;
+			return;
 		}
+	}
+
+	if(Montage->IsValidSectionName(FName("Death")))
+	{
+		
 	}
 }
 

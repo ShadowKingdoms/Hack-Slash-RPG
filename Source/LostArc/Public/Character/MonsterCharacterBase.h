@@ -38,6 +38,9 @@ public:
 
 	void ToggleHPBarWidget(bool bVisibility);
 	float GetMonsterDetectRadius() { return MonsterDetectRadius; }
+	
+	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable)
+	void MonsterExtinctionEffects();
 
 protected:
 	UPROPERTY(BlueprintReadWrite, meta = (AllowPrivateAccess = true))
