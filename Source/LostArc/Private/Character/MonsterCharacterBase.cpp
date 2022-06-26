@@ -70,7 +70,7 @@ float AMonsterCharacterBase::TakeDamage(float DamageAmount, FDamageEvent const& 
 			SetActorEnableCollision(false);
 			DropPickupItem();
 			GetController()->Destroyed();
-		}
+		} 
 	}
 	
 	MonsterHPChanged();
