@@ -13,7 +13,7 @@ ULostArcGameInstance::ULostArcGameInstance()
 void ULostArcGameInstance::Init()
 {
 	Super::Init();
-}
+}	
 
 FArcCharacterData* ULostArcGameInstance::GetArcCharacterData(int32 Level)
 {
