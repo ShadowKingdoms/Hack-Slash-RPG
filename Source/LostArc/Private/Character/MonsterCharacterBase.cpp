@@ -63,6 +63,7 @@ float AMonsterCharacterBase::TakeDamage(float DamageAmount, FDamageEvent const& 
 	if (FFinalDamage > 0.f)
 	{
 		MonsterHP -= FFinalDamage;
+		MonsterHPChanged();
 		
 		if(MonsterHP <= 0.f)
 		{
@@ -73,7 +74,6 @@ float AMonsterCharacterBase::TakeDamage(float DamageAmount, FDamageEvent const& 
 		} 
 	}
 	
-	MonsterHPChanged();
 	return FFinalDamage;
 }
 

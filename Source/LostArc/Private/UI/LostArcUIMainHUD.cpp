@@ -10,7 +10,6 @@ void ULostArcUIMainHUD::NativePreConstruct()
 {
 	Super::NativePreConstruct();
 	Visibility = ESlateVisibility::Visible;
-	
 }
 
 void ULostArcUIMainHUD::NativeConstruct()
