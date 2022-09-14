@@ -26,11 +26,11 @@ private:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="FloatingDamageText", meta=(AllowPrivateAccess = "true"))
 	TSubclassOf<AFloatingTextActor> FloatingTextActorClass = nullptr;
 
-	// space between each number
+	// 텍스트 생성 위치(높이)
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="FloatingDamageText", meta=(AllowPrivateAccess = "true"))
 	float TextVerticalSpacing = 40.0f;
 
-	// verticalOffset a new text
+	// 텍스트 간 간격(추가 생성 간격)
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="FloatingDamageText", meta=(AllowPrivateAccess = "true"))
 	float TextVerticalOffset = 100.0f;
 

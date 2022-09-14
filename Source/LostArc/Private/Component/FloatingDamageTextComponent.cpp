@@ -33,7 +33,8 @@ void UFloatingDamageTextComponent::TickComponent(float DeltaTime, ELevelTick Tic
 	const float viewportScale = GetDefault<UUserInterfaceSettings>(UUserInterfaceSettings::StaticClass())->GetDPIScaleBasedOnSize(FIntPoint(viewportX,viewportY));
 	
 	// get the owing player's camera location
-	const FVector cameraLocation = GetOwner<APawn>()->GetController<APlayerController>()->PlayerCameraManager->GetCameraLocation();
+
+	const FVector cameraLocation = UGameplayStatics::GetPlayerController(GetWorld(), 0)->PlayerCameraManager->GetCameraLocation();
 
 	// 뷰포트 크기와 스케일로 활성 텍스트 액터의 수직 위치를 화면에 균등하게 쌓는 것처럼 보입니다.
 	for(int32 i = 1; i < ActivityTextActors.Num(); i++)
