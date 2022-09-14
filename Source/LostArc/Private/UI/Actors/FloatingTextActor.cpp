@@ -15,7 +15,8 @@ AFloatingTextActor::AFloatingTextActor()
 void AFloatingTextActor::BeginPlay()
 {
 	Super::BeginPlay();
-	
+
+	AnchorLocation = GetActorLocation();
 }
 
 // Called every frame

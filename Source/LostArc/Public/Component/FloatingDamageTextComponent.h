@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
+#include "UI/Actors/FloatingTextActor.h"
 #include "FloatingDamageTextComponent.generated.h"
 
 
@@ -23,7 +24,7 @@ public:
 
 private:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="FloatingDamageText", meta=(AllowPrivateAccess = "true"))
-	TSubclassOf<AActor> FloatingTextActorClass = nullptr;
+	TSubclassOf<AFloatingTextActor> FloatingTextActorClass = nullptr;
 
 	// space between each number
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="FloatingDamageText", meta=(AllowPrivateAccess = "true"))
@@ -35,7 +36,7 @@ private:
 
 public:
 	// 월드 공간의 지정된 위치에 지정된 텍스트를 추가합니다.
-	UFUNCTION(Unreliable, BlueprintCallable, Category="FloatingDamageText")
+	UFUNCTION(BlueprintCallable, Category="FloatingDamageText")
 	void AddFloatingText(const FText& text, FVector world_location);
 
 private:
@@ -45,5 +46,5 @@ private:
 
 	// an array of all active text actors
 	UPROPERTY()
-	TArray<AActor*> ActivityTextActors;
+	TArray<AFloatingTextActor*> ActivityTextActors;
 };

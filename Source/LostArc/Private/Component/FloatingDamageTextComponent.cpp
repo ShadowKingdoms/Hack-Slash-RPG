@@ -1,9 +1,9 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-
 #include "Component/FloatingDamageTextComponent.h"
 #include "Blueprint/WidgetLayoutLibrary.h"
 #include "Engine/UserInterfaceSettings.h"
+#include "UI/Actors/FloatingTextActor.h"
 #include "Kismet/GameplayStatics.h"
 
 UFloatingDamageTextComponent::UFloatingDamageTextComponent()
@@ -39,7 +39,7 @@ void UFloatingDamageTextComponent::TickComponent(float DeltaTime, ELevelTick Tic
 	for(int32 i = 1; i < ActivityTextActors.Num(); i++)
 	{
 		// 플로팅 텍스트 액터에서 카메라가 얼마나 멀리 떨어져 있는지에 따라 수직 오프셋을 계산합니다.
-		AActor* textActor = ActivityTextActors[i];
+		AFloatingTextActor* textActor = ActivityTextActors[i];
 		const float distance = FVector::Dist(cameraLocation, textActor->GetAnchorLocation());
 		const float verticalOffset = distance / (viewportSize.X / viewportScale);
 
@@ -56,7 +56,7 @@ void UFloatingDamageTextComponent::AddFloatingText(const FText& text, FVector wo
 
 	// 지정된 위치에 텍스트 액터 생성
 	const FTransform spawnTransform = FTransform(FRotator::ZeroRotator, world_location + FVector(0.f, 0.f, TextVerticalOffset));
-	AActor * newTextActor = GetWorld()->SpawnActorDeferred<AActor>(FloatingTextActorClass, spawnTransform, GetOwner());
+	AFloatingTextActor * newTextActor = GetWorld()->SpawnActorDeferred<AFloatingTextActor>(FloatingTextActorClass, spawnTransform, GetOwner());
 
 	if(newTextActor == nullptr)
 		return;
