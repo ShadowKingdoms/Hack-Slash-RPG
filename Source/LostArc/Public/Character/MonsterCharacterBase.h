@@ -47,6 +47,9 @@ protected:
 	float MonsterHP;
 
 	UPROPERTY(BlueprintReadWrite, meta = (AllowPrivateAccess = true))
+	float MonsterTempHP;
+
+	UPROPERTY(BlueprintReadWrite, meta = (AllowPrivateAccess = true))
 	float MonsterMaxHP;
 	
 	UPROPERTY(BlueprintReadWrite, meta = (AllowPrivateAccess = true))

@@ -1,7 +1,6 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "Character/MonsterCharacterBase.h"
-
 #include "DrawDebugHelpers.h"
 #include "AnimInstances/MonsterBaseAnimInstance.h"
 #include "Components/CapsuleComponent.h"
@@ -44,7 +43,7 @@ void AMonsterCharacterBase::PostInitializeComponents()
 		MonsterAnim->OnMontageEnded.AddDynamic(this, &AMonsterCharacterBase::OnAttackMontageEnded);
 	}
 
-	HPBarWidget->SetVisibility(false);
+	ToggleHPBarWidget(false);
 }
 
 // Called when the game starts or when spawned
@@ -55,16 +54,16 @@ void AMonsterCharacterBase::BeginPlay()
 
 float AMonsterCharacterBase::TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser)
 {
-	float FFinalDamage = Super::TakeDamage(DamageAmount, DamageEvent, EventInstigator, DamageCauser);
-	
-	UE_LOG(LogTemp,Warning,TEXT("%f"), FFinalDamage);
+	const float FFinalDamage = Super::TakeDamage(DamageAmount, DamageEvent, EventInstigator, DamageCauser);
 	
 	if (FFinalDamage > 0.f)
 	{
-		MonsterHP -= FFinalDamage;
+		UE_LOG(LogTemp,Warning,TEXT("Monste HP %f"), MonsterHP);
+		UE_LOG(LogTemp,Warning,TEXT("Temp HP %f"), MonsterTempHP);
+
 		MonsterHPChanged();
 		
-		if(MonsterHP <= 0.f)
+		if(MonsterTempHP <= 0.f)
 		{
 			MonsterAnim->SetDeadAnim();
 			SetActorEnableCollision(false);
