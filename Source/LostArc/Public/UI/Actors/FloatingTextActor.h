@@ -15,7 +15,7 @@ public:
 	// Sets default values for this actor's properties
 	AFloatingTextActor();
 
-	UFUNCTION(BlueprintImplementableEvent, Category = "FloatingTextActor")
+	UFUNCTION(BlueprintImplementableEvent, Category = "FloatingTextActor") // 블루프린트에서만 구현 가능함
 	void Initialize(const FText & text);
 
 	inline const FVector& GetAnchorLocation() const { return AnchorLocation; }

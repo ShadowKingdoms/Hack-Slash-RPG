@@ -36,7 +36,7 @@ private:
 
 public:
 	// 월드 공간의 지정된 위치에 지정된 텍스트를 추가합니다.
-	UFUNCTION(BlueprintCallable, Category="FloatingDamageText")
+	UFUNCTION(BlueprintCallable, Category="FloatingDamageText") // 블루프린트에서 호출 가능함
 	void AddFloatingText(const FText& text, FVector world_location);
 
 private:
