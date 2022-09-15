@@ -22,17 +22,7 @@ AMonsterCharacterBase::AMonsterCharacterBase()
 	bUseControllerRotationYaw = false;
 
 	HPBarWidget = CreateDefaultSubobject<UWidgetComponent>(TEXT("HPBARWIDGET"));
-	
-	// static ConstructorHelpers::FClassFinder<UUserWidget> UI_Reference(TEXT("WidgetBlueprint'/Game/UI/Monster/BP_MonsterHPBar.BP_MonsterHPBar_C'"));
-	// if (UI_Reference.Succeeded())
-	// {
-	// 	HPBarWidget = CreateDefaultSubobject<UWidgetComponent>(TEXT("HPBARWIDGET"));
-	// 	HPBarWidget->SetupAttachment(GetMesh());
-	// 	HPBarWidget->SetWidgetSpace(EWidgetSpace::Screen);
-	// 	HPBarWidget->SetWidgetClass(UI_Reference.Class);
-	// 	HPBarWidget->SetRelativeLocation(FVector(0, 0, 256));
-	// 	HPBarWidget->SetDrawSize(FVector2D(96, 24));
-	// }
+	HPBarWidget->SetupAttachment(GetMesh());
 }
 
 void AMonsterCharacterBase::PostInitializeComponents()
