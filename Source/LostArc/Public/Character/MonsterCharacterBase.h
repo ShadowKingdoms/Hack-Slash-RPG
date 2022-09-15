@@ -72,7 +72,4 @@ protected:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = UI, meta = (AllowPrivateAccess = true))
 	class UWidgetComponent* HPBarWidget;
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Component, meta = (AllowPrivateAccess = true))
-	class UFloatingDamageTextComponent* FloatingDamageTextComponent;
 };

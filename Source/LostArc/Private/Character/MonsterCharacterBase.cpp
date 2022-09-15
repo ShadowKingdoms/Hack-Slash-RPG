@@ -5,11 +5,9 @@
 #include "DrawDebugHelpers.h"
 #include "AnimInstances/MonsterBaseAnimInstance.h"
 #include "Components/CapsuleComponent.h"
-#include "Components/ProgressBar.h"
 #include "Component/AIAbilityComponent.h"
 #include "Components/WidgetComponent.h"
 #include "Controller/MonsterBaseAIController.h"
-#include "Component/FloatingDamageTextComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 
 // Sets default values
@@ -34,8 +32,6 @@ AMonsterCharacterBase::AMonsterCharacterBase()
 		HPBarWidget->SetRelativeLocation(FVector(0, 0, 256));
 		HPBarWidget->SetDrawSize(FVector2D(96, 24));
 	}
-
-	FloatingDamageTextComponent = CreateDefaultSubobject<UFloatingDamageTextComponent>(TEXT("FLOATINGTEXT"));
 }
 
 void AMonsterCharacterBase::PostInitializeComponents()

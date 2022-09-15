@@ -18,8 +18,6 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/../../Program Files/Epic Games/UE_4.27/Engine/Source/Developer/GraphColor/Private/graphColorVertices.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Source/LostArc/Private/Component/FloatingDamageTextComponent.cpp" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Source/LostArc/Public/Component/FloatingDamageTextComponent.h" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -287,7 +285,7 @@
       <workItem from="1663135915197" duration="4356000" />
       <workItem from="1663144966385" duration="8965000" />
       <workItem from="1663222831625" duration="1633000" />
-      <workItem from="1663226182749" duration="603000" />
+      <workItem from="1663226182749" duration="1097000" />
     </task>
     <servers />
   </component>
