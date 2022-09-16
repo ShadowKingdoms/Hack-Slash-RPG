@@ -76,10 +76,14 @@ private:
 	float BonusDEF = 0.f;
 	float BonusMaxHP = 0.f;
 	float BonusMaxMP = 0.f;
+	float CriticalRate = 50.f;
 
 	UFUNCTION(meta = (AllowPrivateAccess = true))
 	void SetCurrentLevel(int32 NewLevel);
 
 	UFUNCTION(meta = (AllowPrivateAccess = true))
 	void ManaRegenerationPerSecond(float Amount);
+
+	UFUNCTION(BlueprintCallable, meta = (AllowPrivateAccess = true))
+	float GetCriticalRate() { return CriticalRate; }
 };
