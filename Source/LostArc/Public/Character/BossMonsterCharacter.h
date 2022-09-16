@@ -42,6 +42,11 @@ public:
 	UFUNCTION(BlueprintCallable)
 	virtual void BossMonsterAttackHitCheck();
 	
+	virtual void ToggleHPBarWidget(bool bVisibility) override;
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void ToggleBossHPBarWidget(bool bVisibility);
+	
 	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable)
 	void MonsterJumpEffect();
 

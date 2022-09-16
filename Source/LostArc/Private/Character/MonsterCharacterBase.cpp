@@ -50,9 +50,6 @@ float AMonsterCharacterBase::TakeDamage(float DamageAmount, FDamageEvent const& 
 	
 	if (FFinalDamage > 0.f)
 	{
-		UE_LOG(LogTemp,Warning,TEXT("Monste HP %f"), MonsterHP);
-		UE_LOG(LogTemp,Warning,TEXT("Temp HP %f"), MonsterTempHP);
-
 		MonsterHPChanged();
 		
 		if(MonsterTempHP <= 0.f)
@@ -116,5 +113,15 @@ void AMonsterCharacterBase::OnAttackMontageEnded(UAnimMontage* Montage, bool bIn
 
 void AMonsterCharacterBase::ToggleHPBarWidget(bool bVisibility)
 {
-	HPBarWidget->SetVisibility(bVisibility);
+	if(!bIsShowHPBar && bVisibility)
+	{
+		HPBarWidget->SetVisibility(bVisibility);
+		bIsShowHPBar = true; 
+	}
+
+	else if(!bVisibility)
+	{
+		HPBarWidget->SetVisibility(bVisibility);
+		bIsShowHPBar = false;
+	}
 }

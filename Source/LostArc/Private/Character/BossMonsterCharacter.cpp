@@ -130,3 +130,17 @@ void ABossMonsterCharacter::BossMonsterAttackHitCheck()
 	}
 }
 
+void ABossMonsterCharacter::ToggleHPBarWidget(bool bVisibility)
+{
+	if(!bIsShowHPBar && bVisibility)
+	{
+		ToggleBossHPBarWidget(bVisibility);
+		bIsShowHPBar = true;
+	}
+	
+	else if(!bVisibility)
+	{
+		ToggleBossHPBarWidget(bVisibility);
+		bIsShowHPBar = false;
+	}
+}
