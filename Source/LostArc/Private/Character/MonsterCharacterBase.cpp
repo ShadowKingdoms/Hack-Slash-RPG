@@ -47,10 +47,12 @@ void AMonsterCharacterBase::BeginPlay()
 float AMonsterCharacterBase::TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser)
 {
 	const float FFinalDamage = Super::TakeDamage(DamageAmount, DamageEvent, EventInstigator, DamageCauser);
+
+	
 	
 	if (FFinalDamage > 0.f)
 	{
-		MonsterHPChanged();
+		MonsterHPChanged();	
 		
 		if(MonsterTempHP <= 0.f)
 		{
