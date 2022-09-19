@@ -1,6 +1,8 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "Abilities/Skill/LostArcSkillBase.h"
+
+#include "DrawDebugHelpers.h"
 #include "Blueprint/AIBlueprintHelperLibrary.h"
 #include "Component/LostArcCharacterAbilityComponent.h"
 
@@ -56,6 +58,7 @@ void ULostArcSkillBase::HitDetection(ALostArcPlayerCharacter* Character)
 	
 	GetWorld()->SweepMultiByChannel(HitResultProperty.Value, Character->GetActorLocation(), Character->GetActorLocation(), FQuat::Identity, ECollisionChannel::ECC_GameTraceChannel2, FCollisionShape::MakeSphere(SkillRadius.Key), HitResultProperty.Key);
 
+	
 	for (int32 i = 0; i < HitResultProperty.Value.Num(); i++)
 	{
 		FHitResult hit = HitResultProperty.Value[i];
@@ -66,7 +69,6 @@ void ULostArcSkillBase::HitDetection(ALostArcPlayerCharacter* Character)
 			{
 				if (FVector::DotProduct(direction.GetSafeNormal(), Character->GetActorForwardVector()) > dotValue) // 부채꼴 밑변(중앙선)의 길이를 타겟의 각도와 나눈 값(코사인)이 스킬 각도에 대한 코사인 값보다 크면 부채꼴 영역 안에 위치함
 				{
-					UE_LOG(LogTemp,Warning,TEXT("Taking Damage : %f"), Character->StatComponent->GetCurrentAttributeValue(EAttributeType::ATK) * SkillRatio);
 					hit.Actor->TakeDamage(Character->StatComponent->GetCurrentAttributeValue(EAttributeType::ATK) * SkillRatio, DamageEvent, Character->GetController(), Character);
 				}
 			}
