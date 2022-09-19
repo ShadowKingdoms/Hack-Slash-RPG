@@ -16,7 +16,9 @@ enum EAttributeType
 	ATK UMETA(DisplayName = "ATK"),
 	DEF UMETA(DisplayName = "DEF"),
 	EXP UMETA(DisplayName = "EXP"),
-	LVL UMETA(DisplayName = "LVL")
+	LVL UMETA(DisplayName = "LVL"),
+	PHP UMETA(DisplayName = "PHP"),
+	PMP UMETA(DisplayName = "PMP")
 };
 
 DECLARE_MULTICAST_DELEGATE(FOnHPIsZeroDelegate);
@@ -31,8 +33,10 @@ public:
 	ULostArcCharacterStatComponent();
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 	
-	void SetDamage(float NewDamage);
+	UFUNCTION(BlueprintCallable)
 	float GetCurrentAttributeValue(EAttributeType Type);
+	
+	void SetDamage(float NewDamage);
 	float GetMaxAttributeValue(EAttributeType Type);
 	float GetCurrentAttributeRatio(EAttributeType Type);
 	void SetCurrentAttributeValue(EAttributeType Type, float Value);
@@ -68,7 +72,7 @@ private:
 
 	UPROPERTY(Transient, VisibleInstanceOnly, Category = "Stat", meta = (AllowPrivateAccess = true))
 	float CurrentDEF;
-
+	
 	UPROPERTY(Transient, VisibleInstanceOnly, Category = "Stat", meta = (AllowPrivateAccess = true))
 	float IncreasedManaRegeneration;
 

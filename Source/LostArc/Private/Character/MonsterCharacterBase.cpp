@@ -38,7 +38,6 @@ void AMonsterCharacterBase::PostInitializeComponents()
 	ToggleHPBarWidget(false);
 }
 
-// Called when the game starts or when spawned
 void AMonsterCharacterBase::BeginPlay()
 {
 	Super::BeginPlay();
@@ -47,8 +46,6 @@ void AMonsterCharacterBase::BeginPlay()
 float AMonsterCharacterBase::TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser)
 {
 	const float FFinalDamage = Super::TakeDamage(DamageAmount, DamageEvent, EventInstigator, DamageCauser);
-
-	
 	
 	if (FFinalDamage > 0.f)
 	{

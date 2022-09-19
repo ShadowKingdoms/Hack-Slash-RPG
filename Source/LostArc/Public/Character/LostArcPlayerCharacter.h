@@ -27,6 +27,9 @@ public:
 	FORCEINLINE class UCameraComponent* GetTopDownCameraComponent() const { return TopDownCameraComponent; }
 	FORCEINLINE class USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
 
+	UFUNCTION(BlueprintImplementableEvent)
+	void OnPlayerHPChanged();
+	
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Component)
 	class ULostArcCharacterStatComponent* StatComponent;
 
