@@ -100,8 +100,8 @@ void ALostArcPlayerCharacter::Tick(float DeltaTime)
 float ALostArcPlayerCharacter::TakeDamage(float Damage, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser)
 {
 	float FinalDamage = Super::TakeDamage(Damage, DamageEvent, EventInstigator, DamageCauser);
-
 	StatComponent->SetDamage(FinalDamage);
 
+	// OnPlayerHPChanged();
 	return FinalDamage;
 }

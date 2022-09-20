@@ -53,6 +53,12 @@ float ULostArcCharacterStatComponent::GetCurrentAttributeValue(EAttributeType Ty
 	case LVL:
 		return CurrentLevel;
 		break;
+	case PHP:
+		return PHP;
+		break;
+	case PMP:
+		return PMP;
+		break;
 	default:
 		break;
 	}
@@ -126,6 +132,12 @@ void ULostArcCharacterStatComponent::SetCurrentAttributeValue(EAttributeType Typ
 	case LVL:
 		SetCurrentAttributeValueToInt32(Type, FMath::FloorToInt(Value));
 		break;
+	case PHP:
+		PlayerHP = Value;
+		break;
+	case PMP:
+		PlayerMP = Value;
+		break;
 	default:
 		break;
 	}
@@ -188,6 +200,8 @@ void ULostArcCharacterStatComponent::SetCurrentLevel(int32 NewLevel)
 			SetCurrentAttributeValue(EAttributeType::MP, CurrentStatData->Maxmp);
 			SetCurrentAttributeValue(EAttributeType::ATK, CurrentStatData->Attack);
 			SetCurrentAttributeValue(EAttributeType::DEF, CurrentStatData->Defense);
+			SetCurrentAttributeValue(EAttributeType::PHP, CurrentStatData->Maxhp);
+			SetCurrentAttributeValue(EAttributeType::PMP, CurrentStatData->Maxmp);
 			OnProgressBarChanged.Broadcast(EAttributeType::HP);
 			OnProgressBarChanged.Broadcast(EAttributeType::MP);
 		}
@@ -196,7 +210,6 @@ void ULostArcCharacterStatComponent::SetCurrentLevel(int32 NewLevel)
 
 void ULostArcCharacterStatComponent::SetDamage(float NewDamage)
 {
-	UE_LOG(LogTemp,Warning,TEXT("%f"), NewDamage);
 	SetCurrentAttributeValue(EAttributeType::HP, FMath::Clamp<float>(CurrentHP - FMath::Clamp<float>(NewDamage - (GetCurrentAttributeValue(EAttributeType::DEF)),1.f,NewDamage), 0.0f, GetMaxAttributeValue(EAttributeType::HP)));
 }
 

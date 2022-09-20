@@ -34,6 +34,33 @@ public:
 	float Defense;
 };
 
+USTRUCT(BlueprintType)
+struct FArcCharacterStatData : public FTableRowBase
+{
+	GENERATED_BODY()
+
+public:
+	FArcCharacterStatData() : Level(1), MaxHP(500.f), MaxMP(300.0f), Attack(10.f), Defense(1.0f), Critical(10.f) {}
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Data")
+	int32 Level;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Data")
+	float MaxHP;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Data")
+	float MaxMP;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Data")
+	float Attack;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Data")
+	float Defense;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Data")
+	float Critical;
+};
+
 UCLASS()
 class LOSTARC_API ULostArcGameInstance : public UGameInstance
 {
@@ -43,8 +70,12 @@ public:
 	ULostArcGameInstance();
 	virtual void Init() override;
 	FArcCharacterData* GetArcCharacterData(int32 Level);
+	FArcCharacterStatData* GetArcCharacterStatData(int32 Level);
 
 private:
 	UPROPERTY()
 	UDataTable* ArcCharacterTable;
+
+	UPROPERTY()
+	UDataTable* ArcCharacterStatTable;
 };

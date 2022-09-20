@@ -39,7 +39,10 @@ public:
 	void SetDamage(float NewDamage);
 	float GetMaxAttributeValue(EAttributeType Type);
 	float GetCurrentAttributeRatio(EAttributeType Type);
+
+	UFUNCTION(BlueprintCallable)
 	void SetCurrentAttributeValue(EAttributeType Type, float Value);
+
 	void SetCurrentAttributeValueToInt32(EAttributeType Type, int32 Value);
 	void AddBonusAttribute(EAttributeType Type, float Value);
 
@@ -74,7 +77,14 @@ private:
 	float CurrentDEF;
 	
 	UPROPERTY(Transient, VisibleInstanceOnly, Category = "Stat", meta = (AllowPrivateAccess = true))
+	float PlayerHP;
+
+	UPROPERTY(Transient, VisibleInstanceOnly, Category = "Stat", meta = (AllowPrivateAccess = true))
+	float PlayerMP;
+
+	UPROPERTY(Transient, VisibleInstanceOnly, Category = "Stat", meta = (AllowPrivateAccess = true))
 	float IncreasedManaRegeneration;
+	
 
 	float BonusATK = 0.f;
 	float BonusDEF = 0.f;
