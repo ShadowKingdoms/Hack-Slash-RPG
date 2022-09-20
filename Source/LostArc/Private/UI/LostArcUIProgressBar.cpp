@@ -19,13 +19,6 @@ void ULostArcUIProgressBar::NativeConstruct()
 	MaxText->SetText(FText::AsNumber(Character->StatComponent->GetMaxAttributeValue(BarType)));
 
 	Character->StatComponent->OnProgressBarChanged.AddUObject(this, &ULostArcUIProgressBar::UpdateProgressBar);
-
-	if (BarType == EXP)
-	{
-		CurrentText->SetVisibility(ESlateVisibility::Hidden);
-		SlashText->SetVisibility(ESlateVisibility::Hidden);
-		MaxText->SetVisibility(ESlateVisibility::Hidden);
-	}
 }
 
 void ULostArcUIProgressBar::UpdateProgressBar(EAttributeType OwnerType)

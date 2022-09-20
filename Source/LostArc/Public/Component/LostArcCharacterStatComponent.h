@@ -15,10 +15,7 @@ enum EAttributeType
 	MP UMETA(DisplayName = "MP"),
 	ATK UMETA(DisplayName = "ATK"),
 	DEF UMETA(DisplayName = "DEF"),
-	EXP UMETA(DisplayName = "EXP"),
-	LVL UMETA(DisplayName = "LVL"),
-	PHP UMETA(DisplayName = "PHP"),
-	PMP UMETA(DisplayName = "PMP")
+	CRT UMETA(DisplayName = "CRT")
 };
 
 DECLARE_MULTICAST_DELEGATE(FOnHPIsZeroDelegate);
@@ -33,19 +30,29 @@ public:
 	ULostArcCharacterStatComponent();
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 	
-	UFUNCTION(BlueprintCallable)
-	float GetCurrentAttributeValue(EAttributeType Type);
+
 	
 	void SetDamage(float NewDamage);
 	float GetMaxAttributeValue(EAttributeType Type);
 	float GetCurrentAttributeRatio(EAttributeType Type);
 
+
+	
+	UFUNCTION(BlueprintCallable)
+	float GetCurrentAttributeValue(EAttributeType Type);
+
 	UFUNCTION(BlueprintCallable)
 	void SetCurrentAttributeValue(EAttributeType Type, float Value);
-
-	void SetCurrentAttributeValueToInt32(EAttributeType Type, int32 Value);
+	
 	void AddBonusAttribute(EAttributeType Type, float Value);
 
+	UFUNCTION(meta = (AllowPrivateAccess = true))
+	void ManaRegenerationPerSecond(float Amount);
+
+	UFUNCTION(BlueprintCallable, meta = (AllowPrivateAccess = true))
+	float GetCriticalRate() { return GetCurrentAttributeValue(EAttributeType::CRT); }
+
+	
 	FOnProgressBarDelegate OnProgressBarChanged;
 	FOnHPIsZeroDelegate OnHPIsZero;
 
@@ -54,16 +61,10 @@ protected:
 	virtual void BeginPlay() override;
 
 private:
-	FArcCharacterData* CurrentStatData;
+	FArcCharacterStatData* CurrentStatData;
 	FTimerHandle ManaRegenerationTimerHandle;
 	FTimerDelegate ManaRegenerationTimerDelegate;
-
-	UPROPERTY(Transient, VisibleInstanceOnly, Category = "Stat", meta = (AllowPrivateAccess = true))
-	int32 CurrentLevel;
-
-	UPROPERTY(Transient, VisibleInstanceOnly, Category = "Stat", meta = (AllowPrivateAccess = true))
-	int32 CurrentEXP;
-
+	
 	UPROPERTY(Transient, VisibleInstanceOnly, Category = "Stat", meta = (AllowPrivateAccess = true))
 	float CurrentHP;
 
@@ -75,6 +76,9 @@ private:
 
 	UPROPERTY(Transient, VisibleInstanceOnly, Category = "Stat", meta = (AllowPrivateAccess = true))
 	float CurrentDEF;
+
+	UPROPERTY(Transient, VisibleInstanceOnly, Category = "Stat", meta = (AllowPrivateAccess = true))
+	float CurrentCritical;
 	
 	UPROPERTY(Transient, VisibleInstanceOnly, Category = "Stat", meta = (AllowPrivateAccess = true))
 	float PlayerHP;
@@ -90,14 +94,5 @@ private:
 	float BonusDEF = 0.f;
 	float BonusMaxHP = 0.f;
 	float BonusMaxMP = 0.f;
-	float CriticalRate = 20.f;
-
-	UFUNCTION(meta = (AllowPrivateAccess = true))
-	void SetCurrentLevel(int32 NewLevel);
-
-	UFUNCTION(meta = (AllowPrivateAccess = true))
-	void ManaRegenerationPerSecond(float Amount);
-
-	UFUNCTION(BlueprintCallable, meta = (AllowPrivateAccess = true))
-	float GetCriticalRate() { return CriticalRate; }
+	float BonusCritical = 0.f;
 };

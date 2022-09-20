@@ -25,9 +25,6 @@ public:
 	
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, meta = (BindWidget))
 	class ULostArcUIProgressBar* BP_MPBAR;
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, meta = (BindWidget))
-	class ULostArcUIProgressBar* BP_EXPBAR;
 	
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, meta = (BindWidget))
 	class ULostArcUIQuick* BP_Quick;

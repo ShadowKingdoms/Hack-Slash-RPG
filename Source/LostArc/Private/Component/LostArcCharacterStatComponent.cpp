@@ -13,9 +13,23 @@ ULostArcCharacterStatComponent::ULostArcCharacterStatComponent()
 void ULostArcCharacterStatComponent::InitializeComponent()
 {
 	Super::InitializeComponent();
+	const auto ArcGameInstance = Cast<ULostArcGameInstance>(UGameplayStatics::GetGameInstance(GetWorld()));
 
-	CurrentLevel = 5;
-	SetCurrentLevel(CurrentLevel);
+	if (ArcGameInstance != nullptr)
+	{
+		CurrentStatData = ArcGameInstance->GetArcCharacterStatData(1);
+		if (CurrentStatData != nullptr)
+		{
+			SetCurrentAttributeValue(EAttributeType::HP, CurrentStatData->MaxHP);
+			SetCurrentAttributeValue(EAttributeType::MP, CurrentStatData->MaxMP);
+			SetCurrentAttributeValue(EAttributeType::ATK, CurrentStatData->Attack);
+			SetCurrentAttributeValue(EAttributeType::DEF, CurrentStatData->Defense);
+			SetCurrentAttributeValue(EAttributeType::CRT, CurrentStatData->Critical);
+			
+			OnProgressBarChanged.Broadcast(EAttributeType::HP);
+			OnProgressBarChanged.Broadcast(EAttributeType::MP);
+		}
+	}
 }
 
 void ULostArcCharacterStatComponent::BeginPlay()
@@ -47,18 +61,8 @@ float ULostArcCharacterStatComponent::GetCurrentAttributeValue(EAttributeType Ty
 	case DEF:
 		return CurrentDEF;
 		break;
-	case EXP:
-		return CurrentEXP;
-		break;
-	case LVL:
-		return CurrentLevel;
-		break;
-	case PHP:
-		return PHP;
-		break;
-	case PMP:
-		return PMP;
-		break;
+	case CRT:
+		return CurrentCritical;
 	default:
 		break;
 	}
@@ -70,13 +74,10 @@ float ULostArcCharacterStatComponent::GetMaxAttributeValue(EAttributeType Type)
 	switch (Type)
 	{
 	case HP:
-		return CurrentStatData->Maxhp + BonusMaxHP;
+		return CurrentStatData->MaxHP + BonusMaxHP;
 		break;
 	case MP:
-		return CurrentStatData->Maxmp + BonusMaxMP;
-		break;
-	case EXP:
-		return CurrentStatData->Nextexp;
+		return CurrentStatData->MaxMP + BonusMaxMP;
 		break;
 	default:
 		break;
@@ -94,9 +95,6 @@ float ULostArcCharacterStatComponent::GetCurrentAttributeRatio(EAttributeType Ty
 	case MP:
 		return GetMaxAttributeValue(EAttributeType::MP) < KINDA_SMALL_NUMBER ? 0.0f : (CurrentMP / GetMaxAttributeValue(EAttributeType::MP));
 		break;
-	case EXP:
-		return CurrentStatData->Nextexp < KINDA_SMALL_NUMBER ? 0.0f : (CurrentEXP / CurrentStatData->Nextexp);
-		break;
 	default:
 		break;
 	}
@@ -110,11 +108,13 @@ void ULostArcCharacterStatComponent::SetCurrentAttributeValue(EAttributeType Typ
 	case HP:
 		CurrentHP = Value;
 		OnProgressBarChanged.Broadcast(Type);
+		
 		if (CurrentHP < KINDA_SMALL_NUMBER)
 		{
 			CurrentHP = 0.0f;
 			OnHPIsZero.Broadcast();
 		}
+		
 		break;
 	case MP:
 		CurrentMP = Value;
@@ -126,34 +126,8 @@ void ULostArcCharacterStatComponent::SetCurrentAttributeValue(EAttributeType Typ
 	case DEF:
 		CurrentDEF = CurrentStatData->Defense + BonusDEF;
 		break;
-	case EXP:
-		SetCurrentAttributeValueToInt32(Type, FMath::FloorToInt(Value));
-		break;
-	case LVL:
-		SetCurrentAttributeValueToInt32(Type, FMath::FloorToInt(Value));
-		break;
-	case PHP:
-		PlayerHP = Value;
-		break;
-	case PMP:
-		PlayerMP = Value;
-		break;
-	default:
-		break;
-	}
-}
-
-void ULostArcCharacterStatComponent::SetCurrentAttributeValueToInt32(EAttributeType Type, int32 Value)
-{
-	switch (Type)
-	{
-	case EXP:
-		CurrentEXP = Value;
-		OnProgressBarChanged.Broadcast(Type);
-		break;
-	case LVL:
-		SetCurrentLevel(Value);
-		break;
+	case CRT:
+		CurrentCritical = CurrentStatData->Critical + BonusCritical;
 	default:
 		break;
 	}
@@ -179,38 +153,19 @@ void ULostArcCharacterStatComponent::AddBonusAttribute(EAttributeType Type, floa
 		BonusDEF += Value; 
 		UE_LOG(LogTemp, Warning, TEXT("Add Bonous DEF(%d) : %f"), Type, BonusDEF);
 		break;
+	case CRT:
+		BonusCritical += Value;
+		UE_LOG(LogTemp, Warning, TEXT("Add Bonous CRT(%d) : %f"), Type, BonusCritical);
 	default:
 		break;
 	}
-
+	
 	SetCurrentAttributeValue(Type, GetCurrentAttributeValue(Type));
-}
-
-void ULostArcCharacterStatComponent::SetCurrentLevel(int32 NewLevel)
-{
-	auto ArcGameInstance = Cast<ULostArcGameInstance>(UGameplayStatics::GetGameInstance(GetWorld()));
-
-	if (ArcGameInstance != nullptr)
-	{
-		CurrentStatData = ArcGameInstance->GetArcCharacterData(NewLevel);
-		if (CurrentStatData != nullptr)
-		{
-			CurrentLevel = NewLevel;
-			SetCurrentAttributeValue(EAttributeType::HP, CurrentStatData->Maxhp);
-			SetCurrentAttributeValue(EAttributeType::MP, CurrentStatData->Maxmp);
-			SetCurrentAttributeValue(EAttributeType::ATK, CurrentStatData->Attack);
-			SetCurrentAttributeValue(EAttributeType::DEF, CurrentStatData->Defense);
-			SetCurrentAttributeValue(EAttributeType::PHP, CurrentStatData->Maxhp);
-			SetCurrentAttributeValue(EAttributeType::PMP, CurrentStatData->Maxmp);
-			OnProgressBarChanged.Broadcast(EAttributeType::HP);
-			OnProgressBarChanged.Broadcast(EAttributeType::MP);
-		}
-	}
 }
 
 void ULostArcCharacterStatComponent::SetDamage(float NewDamage)
 {
-	SetCurrentAttributeValue(EAttributeType::HP, FMath::Clamp<float>(CurrentHP - FMath::Clamp<float>(NewDamage - (GetCurrentAttributeValue(EAttributeType::DEF)),1.f,NewDamage), 0.0f, GetMaxAttributeValue(EAttributeType::HP)));
+	SetCurrentAttributeValue(EAttributeType::HP, FMath::Clamp<float>(CurrentHP - FMath::Clamp<float>(NewDamage - (GetCurrentAttributeValue(EAttributeType::DEF)),1.f,NewDamage), 0.0f, CurrentHP));
 }
 
 void ULostArcCharacterStatComponent::ManaRegenerationPerSecond(float Amount)
