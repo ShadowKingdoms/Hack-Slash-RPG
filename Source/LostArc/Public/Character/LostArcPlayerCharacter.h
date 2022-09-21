@@ -28,7 +28,7 @@ public:
 	FORCEINLINE class USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
 
 	UFUNCTION(BlueprintImplementableEvent)
-	void OnPlayerHPChanged();
+	void OnPlayerTakeDamage(float Damage);
 	
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Component)
 	class ULostArcCharacterStatComponent* StatComponent;

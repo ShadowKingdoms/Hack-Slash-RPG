@@ -14,6 +14,7 @@
 #include "Controller/LostArcPlayerController.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/SpringArmComponent.h"
+#include "Kismet/KismetMathLibrary.h"
 
 ALostArcPlayerCharacter::ALostArcPlayerCharacter()
 {
@@ -100,8 +101,12 @@ void ALostArcPlayerCharacter::Tick(float DeltaTime)
 float ALostArcPlayerCharacter::TakeDamage(float Damage, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser)
 {
 	float FinalDamage = Super::TakeDamage(Damage, DamageEvent, EventInstigator, DamageCauser);
-	StatComponent->SetDamage(FinalDamage);
-
-	// OnPlayerHPChanged();
-	return FinalDamage;
+	const float Weight = UKismetMathLibrary::RandomFloatInRange(0.7f,1.2f);
+	FinalDamage *= Weight;	
+	const auto LastDamage = FMath::FloorToInt(FinalDamage);
+	
+	StatComponent->SetDamage(LastDamage);
+	OnPlayerTakeDamage(LastDamage);
+	
+	return LastDamage;
 }

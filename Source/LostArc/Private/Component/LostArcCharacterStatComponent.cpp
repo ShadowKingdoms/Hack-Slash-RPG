@@ -40,11 +40,6 @@ void ULostArcCharacterStatComponent::BeginPlay()
 	GetOwner()->GetWorldTimerManager().SetTimer(ManaRegenerationTimerHandle, ManaRegenerationTimerDelegate, 2.0f, true);
 }
 
-void ULostArcCharacterStatComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
-{
-	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
-}
-
 float ULostArcCharacterStatComponent::GetCurrentAttributeValue(EAttributeType Type)
 {
 	switch (Type)

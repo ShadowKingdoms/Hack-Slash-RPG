@@ -28,15 +28,11 @@ class LOSTARC_API ULostArcCharacterStatComponent : public UActorComponent
 
 public:	
 	ULostArcCharacterStatComponent();
-	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
-	
-
 	
 	void SetDamage(float NewDamage);
 	float GetMaxAttributeValue(EAttributeType Type);
 	float GetCurrentAttributeRatio(EAttributeType Type);
-
-
+	void AddBonusAttribute(EAttributeType Type, float Value);
 	
 	UFUNCTION(BlueprintCallable)
 	float GetCurrentAttributeValue(EAttributeType Type);
@@ -44,14 +40,11 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void SetCurrentAttributeValue(EAttributeType Type, float Value);
 	
-	void AddBonusAttribute(EAttributeType Type, float Value);
-
 	UFUNCTION(meta = (AllowPrivateAccess = true))
 	void ManaRegenerationPerSecond(float Amount);
 
 	UFUNCTION(BlueprintCallable, meta = (AllowPrivateAccess = true))
 	float GetCriticalRate() { return GetCurrentAttributeValue(EAttributeType::CRT); }
-
 	
 	FOnProgressBarDelegate OnProgressBarChanged;
 	FOnHPIsZeroDelegate OnHPIsZero;
@@ -89,7 +82,6 @@ private:
 	UPROPERTY(Transient, VisibleInstanceOnly, Category = "Stat", meta = (AllowPrivateAccess = true))
 	float IncreasedManaRegeneration;
 	
-
 	float BonusATK = 0.f;
 	float BonusDEF = 0.f;
 	float BonusMaxHP = 0.f;
