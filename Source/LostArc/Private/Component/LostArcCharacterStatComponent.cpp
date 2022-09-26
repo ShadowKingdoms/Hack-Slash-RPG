@@ -96,20 +96,18 @@ float ULostArcCharacterStatComponent::GetCurrentAttributeRatio(EAttributeType Ty
 	return NULL;
 }
 
-void ULostArcCharacterStatComponent::SetCurrentAttributeValue(EAttributeType Type, float Value)
+void ULostArcCharacterStatComponent::	SetCurrentAttributeValue(EAttributeType Type, float Value)
 {
 	switch (Type)
 	{
 	case HP:
 		CurrentHP = Value;
 		OnProgressBarChanged.Broadcast(Type);
-		
 		if (CurrentHP < KINDA_SMALL_NUMBER)
 		{
 			CurrentHP = 0.0f;
 			OnHPIsZero.Broadcast();
 		}
-		
 		break;
 	case MP:
 		CurrentMP = Value;
