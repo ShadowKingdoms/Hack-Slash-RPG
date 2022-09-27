@@ -75,9 +75,9 @@ void ULostArcUISlotBase::NativeOnDragDetected(const FGeometry& InGeometry, const
 
 	if (OutOperation == nullptr)
 	{
-		ULostArcUISlotDrag* oper = NewObject<ULostArcUISlotDrag>();
 		UUserWidget* DraggedItem = CreateWidget<UUserWidget>(GetWorld(), DragVisualClass);
 		UImage* ImageBox = Cast<UImage>(DraggedItem->GetWidgetFromName("Image_Item"));
+		ULostArcUISlotDrag* oper = NewObject<ULostArcUISlotDrag>();
 
 		if (ImageBox != nullptr)
 		{

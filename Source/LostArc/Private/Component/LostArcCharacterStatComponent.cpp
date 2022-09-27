@@ -96,7 +96,7 @@ float ULostArcCharacterStatComponent::GetCurrentAttributeRatio(EAttributeType Ty
 	return NULL;
 }
 
-void ULostArcCharacterStatComponent::	SetCurrentAttributeValue(EAttributeType Type, float Value)
+void ULostArcCharacterStatComponent::SetCurrentAttributeValue(EAttributeType Type, float Value)
 {
 	switch (Type)
 	{
@@ -110,6 +110,9 @@ void ULostArcCharacterStatComponent::	SetCurrentAttributeValue(EAttributeType Ty
 		}
 		break;
 	case MP:
+	
+
+		
 		CurrentMP = Value;
 		OnProgressBarChanged.Broadcast(Type);
 		break;
