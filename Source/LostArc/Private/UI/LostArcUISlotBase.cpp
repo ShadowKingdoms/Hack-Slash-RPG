@@ -75,20 +75,36 @@ void ULostArcUISlotBase::NativeOnDragDetected(const FGeometry& InGeometry, const
 	// 드래그 이미지 크기 조절
 	if (OutOperation == nullptr)
 	{
-		UUserWidget* DraggedItem = CreateWidget<UUserWidget>(GetWorld(), DragVisualClass);
-		UImage* ImageBox = Cast<UImage>(DraggedItem->GetWidgetFromName("Image_Item"));
+		UUserWidget* DraggedVisual = CreateWidget<UUserWidget>(GetWorld(), DragVisualClass);
+		UImage* DragIcon = Cast<UImage>(DraggedVisual->GetWidgetFromName("Image_Icon"));
+		UImage* DragBorder = Cast<UImage>(DraggedVisual->GetWidgetFromName("Image_Border"));
+		UTextBlock* DragTextBlock = Cast<UTextBlock>(DraggedVisual->GetWidgetFromName("Text_Quantity"));
+		const auto DraggedItemObject = Cast<ULostArcItemBase>(SlotData);
 		
-		if (ImageBox != nullptr)
+		if (DragIcon != nullptr)
 		{
-			ImageBox->SetBrushFromTexture(SlotData->GetAbility_Icon(), true); // true로 해줘야지 원본 텍스쳐 크기를 가져온다. (false는 0,0으로 설정됨)
-			ImageBox->Brush.SetImageSize(FVector2D(96.f,96.f));
+			DragIcon->SetBrush(Image_Icon->Brush); // ..fromTexture는 true로 해야지 원본 텍스쳐 크기를 가져온다. (false는 0,0으로 설정됨)
+			DragIcon->Brush.SetImageSize(FVector2D(112.f,112.f)); // 이미지 크기는 반드시 설정해준다.
 		}
 
+		if(DragBorder != nullptr && Cast<UImage>(GetWidgetFromName("Image_BG")))
+		{
+			DragBorder->SetBrush(Cast<UImage>(GetWidgetFromName("Image_BG"))->Brush); // ..fromTexture는 true로 해야지 원본 텍스쳐 크기를 가져온다. (false는 0,0으로 설정됨)
+			DragBorder->Brush.SetImageSize(FVector2D(112.f,112.f)); // 이미지 크기는 반드시 설정해준다.
+		}
 		
+		if(DraggedItemObject->IsConsumable())
+		{
+			DragTextBlock->SetText(Cast<UTextBlock>(GetWidgetFromName("Text_Quantity"))->GetText());
+		}
+		else
+		{
+			DragTextBlock->SetVisibility(ESlateVisibility::Hidden);
+		}
 		
 		// 드래그 시작 위치의 슬롯 정보를 저장 (OnDrop에서 Owner가 됨)
 		ULostArcUISlotDrag* oper = NewObject<ULostArcUISlotDrag>();
-		oper->DefaultDragVisual = DraggedItem;
+		oper->DefaultDragVisual = DraggedVisual;
 		oper->SlotComponent = this->SlotComponent; // 드래그 시 이미 현재 슬롯 컴포넌트를 도착지 컴포넌트로 교체함
 		oper->SlotIndex = this->SlotIndex;
 		oper->SlotType = this->SlotType;
