@@ -72,7 +72,7 @@ FReply ULostArcUISlotBase::NativeOnMouseButtonDown(const FGeometry& InGeometry, 
 void ULostArcUISlotBase::NativeOnDragDetected(const FGeometry& InGeometry, const FPointerEvent& InMouseEvent, UDragDropOperation*& OutOperation)
 {
 	Super::NativeOnDragDetected(InGeometry, InMouseEvent, OutOperation);
-
+	// 드래그 이미지 크기 조절
 	if (OutOperation == nullptr)
 	{
 		UUserWidget* DraggedItem = CreateWidget<UUserWidget>(GetWorld(), DragVisualClass);
@@ -80,8 +80,11 @@ void ULostArcUISlotBase::NativeOnDragDetected(const FGeometry& InGeometry, const
 		
 		if (ImageBox != nullptr)
 		{
-			ImageBox->SetBrushFromTexture(SlotData->GetAbility_Icon());
+			ImageBox->SetBrushFromTexture(SlotData->GetAbility_Icon(), true); // true로 해줘야지 원본 텍스쳐 크기를 가져온다. (false는 0,0으로 설정됨)
+			ImageBox->Brush.SetImageSize(FVector2D(96.f,96.f));
 		}
+
+		
 		
 		// 드래그 시작 위치의 슬롯 정보를 저장 (OnDrop에서 Owner가 됨)
 		ULostArcUISlotDrag* oper = NewObject<ULostArcUISlotDrag>();
