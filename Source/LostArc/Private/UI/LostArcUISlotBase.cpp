@@ -80,17 +80,17 @@ void ULostArcUISlotBase::NativeOnDragDetected(const FGeometry& InGeometry, const
 		UImage* DragBorder = Cast<UImage>(DraggedVisual->GetWidgetFromName("Image_Border"));
 		UTextBlock* DragTextBlock = Cast<UTextBlock>(DraggedVisual->GetWidgetFromName("Text_Quantity"));
 		const auto DraggedItemObject = Cast<ULostArcItemBase>(SlotData);
-		
-		if (DragIcon != nullptr)
-		{
-			DragIcon->SetBrush(Image_Icon->Brush); // ..fromTexture는 true로 해야지 원본 텍스쳐 크기를 가져온다. (false는 0,0으로 설정됨)
-			DragIcon->Brush.SetImageSize(FVector2D(112.f,112.f)); // 이미지 크기는 반드시 설정해준다.
-		}
 
 		if(DragBorder != nullptr && Cast<UImage>(GetWidgetFromName("Image_BG")))
 		{
 			DragBorder->SetBrush(Cast<UImage>(GetWidgetFromName("Image_BG"))->Brush); // ..fromTexture는 true로 해야지 원본 텍스쳐 크기를 가져온다. (false는 0,0으로 설정됨)
 			DragBorder->Brush.SetImageSize(FVector2D(112.f,112.f)); // 이미지 크기는 반드시 설정해준다.
+		}
+
+		if (DragIcon != nullptr)
+		{
+			DragIcon->SetBrush(Image_Icon->Brush); // ..fromTexture는 true로 해야지 원본 텍스쳐 크기를 가져온다. (false는 0,0으로 설정됨)
+			DragIcon->Brush.SetImageSize(FVector2D(112.f,112.f)); // 이미지 크기는 반드시 설정해준다.
 		}
 		
 		if(DraggedItemObject->IsConsumable())
