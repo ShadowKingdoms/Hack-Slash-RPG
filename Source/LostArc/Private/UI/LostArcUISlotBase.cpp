@@ -77,14 +77,14 @@ void ULostArcUISlotBase::NativeOnDragDetected(const FGeometry& InGeometry, const
 	{
 		UUserWidget* DraggedItem = CreateWidget<UUserWidget>(GetWorld(), DragVisualClass);
 		UImage* ImageBox = Cast<UImage>(DraggedItem->GetWidgetFromName("Image_Item"));
-		ULostArcUISlotDrag* oper = NewObject<ULostArcUISlotDrag>();
-
+		
 		if (ImageBox != nullptr)
 		{
 			ImageBox->SetBrushFromTexture(SlotData->GetAbility_Icon());
 		}
 		
 		// 드래그 시작 위치의 슬롯 정보를 저장 (OnDrop에서 Owner가 됨)
+		ULostArcUISlotDrag* oper = NewObject<ULostArcUISlotDrag>();
 		oper->DefaultDragVisual = DraggedItem;
 		oper->SlotComponent = this->SlotComponent; // 드래그 시 이미 현재 슬롯 컴포넌트를 도착지 컴포넌트로 교체함
 		oper->SlotIndex = this->SlotIndex;
