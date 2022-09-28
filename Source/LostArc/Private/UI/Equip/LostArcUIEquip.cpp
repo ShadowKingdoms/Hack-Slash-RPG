@@ -18,6 +18,7 @@ void ULostArcUIEquip::NativeConstruct()
 	}
 
 	OwnerCharacter->EquipComponent->EquipSlotUpdate.AddUObject(this, &ULostArcUIEquip::RefreshSlot);
+	OwnerCharacter->StatComponent->OnCurrentStatUpdateDelegate.AddUObject(this, &ULostArcUIEquip::UpdateCurrentStatText);	
 	TitleBorder->SetUITabsFromParent(this);
 }
 
@@ -30,4 +31,26 @@ void ULostArcUIEquip::BeginDestroy()
 void ULostArcUIEquip::RefreshSlot(int32 Index)
 {
 	EquipSlot[Index]->RefreshSlotData(Cast<ULostArcAbilityBase>(OwnerCharacter->EquipComponent->GetAbility(Index)));
+}
+
+void ULostArcUIEquip::UpdateCurrentStatText(EAttributeType Type)
+{
+	switch (Type)
+	{
+	case HP:
+		TextBlock_MaxHP->SetText(FText::AsNumber(OwnerCharacter->StatComponent->GetMaxAttributeValue(Type)));
+		break;
+	case MP:
+		TextBlock_MaxMP->SetText(FText::AsNumber(OwnerCharacter->StatComponent->GetMaxAttributeValue(Type)));
+		break;
+	case ATK:
+		TextBlock_Attack->SetText(FText::AsNumber(OwnerCharacter->StatComponent->GetCurrentAttributeValue(Type)));
+		break;
+	case DEF:
+		TextBlock_Defense->SetText(FText::AsNumber(OwnerCharacter->StatComponent->GetCurrentAttributeValue(Type)));
+		break;
+	case CRT:
+		TextBlock_Critical->SetText(FText::AsNumber(OwnerCharacter->StatComponent->GetCurrentAttributeValue(Type)));
+		break;
+	}
 }

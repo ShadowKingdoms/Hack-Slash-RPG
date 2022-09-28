@@ -20,6 +20,7 @@ enum EAttributeType
 
 DECLARE_MULTICAST_DELEGATE(FOnHPIsZeroDelegate);
 DECLARE_MULTICAST_DELEGATE_OneParam(FOnProgressBarDelegate, EAttributeType);
+DECLARE_MULTICAST_DELEGATE_OneParam(FOnCurrentStatUpdateDelegate, EAttributeType);
 
 UCLASS(ClassGroup = (Custom), meta = (BlueprintSpawnableComponent))
 class LOSTARC_API ULostArcCharacterStatComponent : public UActorComponent
@@ -46,6 +47,7 @@ public:
 	UFUNCTION(BlueprintCallable, meta = (AllowPrivateAccess = true))
 	float GetCriticalRate() { return GetCurrentAttributeValue(EAttributeType::CRT); }
 	
+	FOnCurrentStatUpdateDelegate OnCurrentStatUpdateDelegate;
 	FOnProgressBarDelegate OnProgressBarChanged;
 	FOnHPIsZeroDelegate OnHPIsZero;
 

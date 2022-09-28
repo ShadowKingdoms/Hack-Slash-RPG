@@ -25,9 +25,6 @@ void ULostArcCharacterStatComponent::InitializeComponent()
 			SetCurrentAttributeValue(EAttributeType::ATK, CurrentStatData->Attack);
 			SetCurrentAttributeValue(EAttributeType::DEF, CurrentStatData->Defense);
 			SetCurrentAttributeValue(EAttributeType::CRT, CurrentStatData->Critical);
-			
-			OnProgressBarChanged.Broadcast(EAttributeType::HP);
-			OnProgressBarChanged.Broadcast(EAttributeType::MP);
 		}
 	}
 }
@@ -38,6 +35,16 @@ void ULostArcCharacterStatComponent::BeginPlay()
 
 	ManaRegenerationTimerDelegate.BindUFunction(this, FName("ManaRegenerationPerSecond"), IncreasedManaRegeneration);
 	GetOwner()->GetWorldTimerManager().SetTimer(ManaRegenerationTimerHandle, ManaRegenerationTimerDelegate, 2.0f, true);
+
+
+	OnProgressBarChanged.Broadcast(EAttributeType::HP);
+	OnProgressBarChanged.Broadcast(EAttributeType::MP);
+	
+	for (int Type = 0; Type <= EAttributeType::CRT; Type++)
+	{
+		OnCurrentStatUpdateDelegate.Broadcast(static_cast<EAttributeType>(Type));
+	}
+	
 }
 
 float ULostArcCharacterStatComponent::GetCurrentAttributeValue(EAttributeType Type)
@@ -110,20 +117,20 @@ void ULostArcCharacterStatComponent::SetCurrentAttributeValue(EAttributeType Typ
 		}
 		break;
 	case MP:
-	
-
-		
 		CurrentMP = Value;
 		OnProgressBarChanged.Broadcast(Type);
 		break;
 	case ATK:
 		CurrentATK = CurrentStatData->Attack + BonusATK;
+		OnCurrentStatUpdateDelegate.Broadcast(EAttributeType::ATK);
 		break;
 	case DEF:
 		CurrentDEF = CurrentStatData->Defense + BonusDEF;
+		OnCurrentStatUpdateDelegate.Broadcast(EAttributeType::DEF);
 		break;
 	case CRT:
 		CurrentCritical = CurrentStatData->Critical + BonusCritical;
+		OnCurrentStatUpdateDelegate.Broadcast(EAttributeType::CRT);
 	default:
 		break;
 	}
@@ -135,10 +142,12 @@ void ULostArcCharacterStatComponent::AddBonusAttribute(EAttributeType Type, floa
 	{
 	case HP:
 		BonusMaxHP += Value;
+		OnCurrentStatUpdateDelegate.Broadcast(EAttributeType::HP);
 		UE_LOG(LogTemp, Warning, TEXT("Add Bonous MaxHP(%d) : %f"), Type, BonusMaxHP);
 		break;
 	case MP:
 		BonusMaxMP += Value;
+		OnCurrentStatUpdateDelegate.Broadcast(EAttributeType::MP);
 		UE_LOG(LogTemp, Warning, TEXT("Add Bonous MaxMP(%d) : %f"), Type, BonusMaxMP);
 		break;
 	case ATK:

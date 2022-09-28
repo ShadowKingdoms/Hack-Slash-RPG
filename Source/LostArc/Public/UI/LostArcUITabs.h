@@ -17,7 +17,7 @@ public:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, meta = (BindWidget, AllowPrivateAccess = true))
 	class UTextBlock* Text_Title;
-
+	
 	UFUNCTION(BlueprintCallable, meta = (AllowPrivateAccess = true))
 	void SetNewText(FText NewText);
 
