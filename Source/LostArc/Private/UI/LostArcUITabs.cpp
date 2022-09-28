@@ -3,6 +3,7 @@
 
 #include "UI/LostArcUITabs.h"
 #include "Blueprint/WidgetBlueprintLibrary.h"
+#include "Components/TextBlock.h"
 #include "UI/LostArcUISlotDrag.h"
 
 void ULostArcUITabs::SetUITabsFromParent(UUserWidget* Parent)
@@ -42,4 +43,9 @@ void ULostArcUITabs::NativeOnDragDetected(const FGeometry& InGeometry, const FPo
 	
 	// 하지만 부모에서 제거하면 이동 후 드래그를 끝냈을 때 인벤토리 위젯이 Main_HUD(부모)에서 없어져서 안보이게 된다.
 	// 따라서 MainWidget의 NativeOnDrop을 오버라이드 하여 드래그를 놓았을 때 NativeOnDrop을 통해 받아온 Operation으로 MainWidget에 AddToViewport해줌으로써 보여줘야 한다.		
+}
+
+void ULostArcUITabs::SetNewText(FText NewText)
+{
+	Text_Title->SetText(NewText);
 }

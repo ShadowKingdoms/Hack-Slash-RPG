@@ -12,10 +12,16 @@ class LOSTARC_API ULostArcUITabs : public UUserWidget
 	GENERATED_BODY()
 
 public:
-	void SetUITabsFromParent(UUserWidget* Parent);
-	
-	UPROPERTY()
+	UPROPERTY(VisibleAnywhere)
 	UUserWidget* ParentWidget;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, meta = (BindWidget, AllowPrivateAccess = true))
+	class UTextBlock* Text_Title;
+
+	UFUNCTION(BlueprintCallable, meta = (AllowPrivateAccess = true))
+	void SetNewText(FText NewText);
+
+	void SetUITabsFromParent(UUserWidget* Parent);
 
 private:
 	virtual FReply NativeOnMouseButtonDown(const FGeometry& InGeometry, const FPointerEvent& InMouseEvent) override; 
