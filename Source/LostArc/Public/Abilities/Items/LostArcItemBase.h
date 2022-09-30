@@ -20,7 +20,7 @@ enum EItemType
 	ITEM_None  UMETA(DisplayName = "None")
 };
 
-UCLASS()
+UCLASS(BlueprintType)
 class LOSTARC_API ULostArcItemBase : public ULostArcAbilityBase
 {
 	GENERATED_BODY()
