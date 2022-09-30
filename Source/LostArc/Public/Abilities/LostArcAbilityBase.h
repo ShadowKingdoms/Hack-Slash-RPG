@@ -21,12 +21,13 @@ public:
 	UPROPERTY()
 	UActorComponent* OwnerComponent;
 	
-public:
 	virtual bool Use(ALostArcPlayerCharacter* Character) PURE_VIRTUAL(ULostArcAbilityBase::Use, return false;);
 	virtual bool AbilityStateCheck(ALostArcPlayerCharacter* Character) PURE_VIRTUAL(ULostArcAbilityBase::AbilityStateCheck, return false;);
 	
 	UTexture2D* GetAbility_Icon() { return Ability_Icon; }
 	float GetCDTime() { return CoolDown; }
+
+	UFUNCTION(BlueprintCallable)
 	FString GetName() { return Name; }
 
 protected:

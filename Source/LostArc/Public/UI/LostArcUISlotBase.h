@@ -43,7 +43,7 @@ protected:
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UUserWidget> DragVisualClass;
 
-	UPROPERTY()
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = true))
 	class ULostArcAbilityBase* SlotData;
 
 	UPROPERTY()
