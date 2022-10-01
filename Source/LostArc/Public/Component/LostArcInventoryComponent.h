@@ -27,6 +27,7 @@ public:
 	bool InventorySlotEmptyCheck();
 	void DeleteItemAfterCheckingQuantity();
 
+	// Add Item for Inventory
 	UFUNCTION(BlueprintCallable)
 	void AddPickupItem(FString ItemName, int32 ItemCount = 1);
 	

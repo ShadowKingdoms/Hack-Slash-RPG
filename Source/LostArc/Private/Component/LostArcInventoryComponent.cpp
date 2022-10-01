@@ -3,6 +3,8 @@
 #include "Component/LostArcInventoryComponent.h"
 #include "Abilities/Items/LostArcItemBase.h"
 #include "Component/LostArcAbilityInterface.h"
+#include "Controller/LostArcPlayerController.h"
+#include "UI/LostArcUIMainHUD.h"
 
 ULostArcInventoryComponent::ULostArcInventoryComponent()
 {
@@ -176,7 +178,9 @@ bool ULostArcInventoryComponent::InventorySlotEmptyCheck()
 void ULostArcInventoryComponent::AddPickupItem(FString ItemName, int32 ItemCount)
 {
 	if (ItemTable.Find(ItemName) == nullptr) return;
-	auto NewItem = ItemTable.Find(ItemName)->GetDefaultObject();
+	const auto NewItem = ItemTable.Find(ItemName)->GetDefaultObject();
+	const auto Player = Cast<ALostArcPlayerCharacter>(GetOwner());
+	const auto PController = Cast<ALostArcPlayerController>(Player->GetController());
 
 	if (NewItem)
 	{
@@ -189,6 +193,12 @@ void ULostArcInventoryComponent::AddPickupItem(FString ItemName, int32 ItemCount
 					if (InventorySlot[i]->GetName() == NewItem->GetName()) // 인벤에 이미 있으면
 					{
 						InventorySlot[i]->SetItemQuantity(ItemCount); // 수량만 증가
+
+						const auto StringName = InventorySlot[i]->GetName();
+						const auto TextureBg = InventorySlot[i]->GetBgTexture2D();
+						const auto TextureIcon = InventorySlot[i]->GetAbility_Icon();
+						PController->MainHUD->CallInventoryItemNotice(TextureBg, TextureIcon, FText::FromString(StringName));
+						
 						return;
 					}
 				}
@@ -200,7 +210,13 @@ void ULostArcInventoryComponent::AddPickupItem(FString ItemName, int32 ItemCount
 					InventorySlot[i] = NewObject<ULostArcItemBase>(this, ItemTable.Find(ItemName)->Get()); // 새로운 아이템을 인벤에 추가
 					InventorySlot[i]->SetItemQuantity(ItemCount); // 수량 증가
 					InvenSlotUpdate.Broadcast(i);
-					break;
+
+					const auto StringName = InventorySlot[i]->GetName();
+					const auto TextureBg = InventorySlot[i]->GetBgTexture2D();
+					const auto TextureIcon = InventorySlot[i]->GetAbility_Icon();
+					PController->MainHUD->CallInventoryItemNotice(TextureBg, TextureIcon, FText::FromString(StringName));
+					
+					return;
 				}
 			}
 		}
@@ -212,7 +228,13 @@ void ULostArcInventoryComponent::AddPickupItem(FString ItemName, int32 ItemCount
 				{
 					InventorySlot[i] = NewObject<ULostArcItemBase>(this, ItemTable.Find(ItemName)->Get());
 					InvenSlotUpdate.Broadcast(i);
-					break;
+
+					const auto StringName = InventorySlot[i]->GetName();
+					const auto TextureBg = InventorySlot[i]->GetBgTexture2D();
+					const auto TextureIcon = InventorySlot[i]->GetAbility_Icon();
+					PController->MainHUD->CallInventoryItemNotice(TextureBg, TextureIcon, FText::FromString(StringName));
+					
+					return;
 				}
 			}
 		}

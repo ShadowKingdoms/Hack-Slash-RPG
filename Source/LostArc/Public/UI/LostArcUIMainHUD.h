@@ -35,6 +35,12 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, meta = (BindWidget))
 	class ULostArcUIEquip* BP_Equip;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, meta = (BindWidget))
+	class UScrollBox* ItemNotices; 
+
 	UFUNCTION(BlueprintCallable)
 	void EnableWidget(ESlotType EType);
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void CallInventoryItemNotice(UTexture2D* TextureBG, UTexture2D* TextureIcon, const FText& TextName); // FText는 const &로 선언해줘야 한다.
 };
