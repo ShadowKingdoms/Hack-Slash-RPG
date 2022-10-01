@@ -55,6 +55,8 @@ bool ULostArcUIQuickSlot::NativeOnDrop(const FGeometry& InGeometry, const FDragD
 				ItemQuantityHandle = OwnerItem->QuantityUpdate.AddUObject(this, &ULostArcUIQuickSlot::UpdateQuantity);
 				Text_Quantity->SetText(FText::AsNumber(FMath::FloorToInt(OwnerItem->GetItemQuantity())));
 				Text_Quantity->SetVisibility(ESlateVisibility::Visible);
+				Image_BG->SetBrushFromTexture(OwnerItem->BgTexture2D);
+				Image_BG->SetVisibility(ESlateVisibility::Visible);
 				Cast<ALostArcPlayerCharacter>(GetOwningPlayerPawn())->QuickSlotComponent->QuickSlot[SlotIndex] = Interface->GetAbility(OwnerDrag->SlotIndex); // 컴포넌트에 데이터 복사
 			}
 		
@@ -70,6 +72,8 @@ bool ULostArcUIQuickSlot::NativeOnDrop(const FGeometry& InGeometry, const FDragD
 				ItemQuantityHandle = OwnerItem->QuantityUpdate.AddUObject(this, &ULostArcUIQuickSlot::UpdateQuantity);
 				Text_Quantity->SetText(FText::AsNumber(FMath::FloorToInt(OwnerItem->GetItemQuantity())));
 				Text_Quantity->SetVisibility(ESlateVisibility::Visible);
+				Image_BG->SetBrushFromTexture(OwnerItem->BgTexture2D);
+				Image_BG->SetVisibility(ESlateVisibility::Visible);
 				Cast<ALostArcPlayerCharacter>(GetOwningPlayerPawn())->QuickSlotComponent->QuickSlot[SlotIndex] = OwnerItem;
 			}
 		
@@ -136,12 +140,13 @@ void ULostArcUIQuickSlot::UpdateQuantity()
 {
 	if (SlotData != nullptr) 
 	{
-		if(FMath::FloorToInt(Cast<ULostArcItemBase>(SlotData)->GetItemQuantity()) <=0) // 삭제해도 계속 남아있음(수정필요)
+		if(FMath::FloorToInt(Cast<ULostArcItemBase>(SlotData)->GetItemQuantity()) <= 0) // 삭제해도 계속 남아있음(수정필요)
 		{
 			Cast<ALostArcPlayerCharacter>(GetOwningPlayerPawn())->QuickSlotComponent->QuickSlot[SlotIndex] = nullptr;
 			// 인벤토리 슬롯의 인덱스 추적은 불가
 			Text_Quantity->SetVisibility(ESlateVisibility::Hidden);
 			Image_Icon->SetVisibility(ESlateVisibility::Hidden);
+			Image_BG->SetVisibility(ESlateVisibility::Hidden);
 			UnBindSlotData();
 			SlotData = nullptr;
 		}
@@ -157,6 +162,7 @@ void ULostArcUIQuickSlot::ClearSlotData()
 	Text_Quantity->SetVisibility(ESlateVisibility::Hidden);
 	Image_Icon->SetVisibility(ESlateVisibility::Hidden);
 	Image_CD->SetVisibility(ESlateVisibility::Hidden);
+	Image_BG->SetVisibility(ESlateVisibility::Hidden);
 
 	SlotData->AbilityCDProperty.Value.Remove(AbilityCDHandle); // 엔진에 등록된 AbilityCDHandle 델리게이트 핸들을 삭제
 	SlotData = nullptr;
