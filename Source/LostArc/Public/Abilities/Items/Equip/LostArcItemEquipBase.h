@@ -27,7 +27,4 @@ public:
 	
 protected:
 	EAccessoryType AcType;
-	
-	float Value = 0.f;
-	
 };

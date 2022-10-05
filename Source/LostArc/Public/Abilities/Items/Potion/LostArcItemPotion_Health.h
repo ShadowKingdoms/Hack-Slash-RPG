@@ -19,7 +19,4 @@ public:
 
 protected:
 	virtual bool Consumed(ALostArcPlayerCharacter* Character) override;
-
-private:
-	float Value = 100.f;
 };

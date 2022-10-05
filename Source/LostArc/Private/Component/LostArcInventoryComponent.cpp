@@ -2,6 +2,7 @@
 
 #include "Component/LostArcInventoryComponent.h"
 #include "Abilities/Items/LostArcItemBase.h"
+#include "Abilities/Items/Equip/LostArcItemEquipBase.h"
 #include "Component/LostArcAbilityInterface.h"
 #include "Controller/LostArcPlayerController.h"
 #include "UI/LostArcUIMainHUD.h"
@@ -227,6 +228,8 @@ void ULostArcInventoryComponent::AddPickupItem(FString ItemName, int32 ItemCount
 				if (InventorySlot[i] == nullptr)
 				{
 					InventorySlot[i] = NewObject<ULostArcItemBase>(this, ItemTable.Find(ItemName)->Get());
+					auto EquipItem = Cast<ULostArcItemEquipBase>(InventorySlot[i]);
+					
 					InvenSlotUpdate.Broadcast(i);
 
 					const auto StringName = InventorySlot[i]->GetName();

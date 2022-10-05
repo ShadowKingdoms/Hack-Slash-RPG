@@ -29,18 +29,20 @@ public:
 	UTexture2D* BgTexture2D;
 	FOnItemQuantityUpdateDelegate QuantityUpdate;
 	
-public:
 	virtual bool Use(ALostArcPlayerCharacter* Character) override;
 	virtual bool AbilityStateCheck(ALostArcPlayerCharacter* Character) override;
 	bool IsConsumable() const;
-
 	bool SetItemQuantity(int32 Count);
 	int32 GetItemQuantity() { return ItemQuantity; }
 	UTexture2D* GetBgTexture2D() { return BgTexture2D; }
 	EItemType GetItemType() { return ItemType; }
 
+	UFUNCTION(BlueprintCallable)
+	float GetItemValue() const {return Value;}
+
 protected:
 	int32 MaxCount;
 	int32 ItemQuantity;
 	EItemType ItemType;
+	float Value = 0.f;
 };
