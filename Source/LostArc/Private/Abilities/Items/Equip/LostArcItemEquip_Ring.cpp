@@ -20,7 +20,7 @@ bool ULostArcItemEquip_Ring::Use(ALostArcPlayerCharacter* Character)
 	if (Super::Use(Character))
 	{
 		auto StatComponent = Character->StatComponent;
-		StatComponent->AddBonusAttribute(EAttributeType::DEF, Value);
+		StatComponent->AddBonusAttribute(AtbType, Value);
 		return true;
 	}
 
@@ -31,12 +31,12 @@ void ULostArcItemEquip_Ring::Equipment(ALostArcPlayerCharacter* Character)
 {
 	Super::Equipment(Character);
 	auto StatComponent = Character->StatComponent;
-	StatComponent->AddBonusAttribute(EAttributeType::DEF, Value);
+	StatComponent->AddBonusAttribute(AtbType, Value);
 }
 
 void ULostArcItemEquip_Ring::Dismount(ALostArcPlayerCharacter* Character)
 {
 	Super::Dismount(Character);
 	auto StatComponent = Character->StatComponent;
-	StatComponent->AddBonusAttribute(EAttributeType::DEF, -Value);
+	StatComponent->AddBonusAttribute(AtbType, -Value);
 }

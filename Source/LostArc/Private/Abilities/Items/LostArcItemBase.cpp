@@ -38,3 +38,8 @@ bool ULostArcItemBase::SetItemQuantity(int32 Count)
 
 	return bool(FMath::Clamp(ItemQuantity, 0, 1));
 }
+
+void ULostArcItemBase::ItemConstruct()
+{
+	
+}

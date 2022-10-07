@@ -8,7 +8,7 @@
 #include "AnimInstances/LostArcCharacterAnimInstance.h"
 #include "LostArcSkillBase.generated.h"
 
-UCLASS()
+UCLASS(Blueprintable)
 class LOSTARC_API ULostArcSkillBase : public ULostArcAbilityBase
 {
 	GENERATED_BODY()
@@ -28,6 +28,12 @@ public:
 	virtual void HitDetection(ALostArcPlayerCharacter* Character);
 	
 	static void ConstructSkillSubActors(TArray<ULostArcSkillBase*> BaseAbility, TArray<TSubclassOf<AActor>> Indicator, TArray<TSubclassOf<AActor>> Effect);
+	
+	UFUNCTION(BlueprintCallable)
+	float GetSkillRatio() { return SkillRatio; }
+	
+	UFUNCTION(BlueprintCallable)
+	float GetManaCost() { return ManaCost; }
 
 protected:
 	TPair<float, float> SkillRadius; // distance, angle

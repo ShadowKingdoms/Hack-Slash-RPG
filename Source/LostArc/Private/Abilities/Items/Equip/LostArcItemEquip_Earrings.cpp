@@ -22,7 +22,7 @@ bool ULostArcItemEquip_Earrings::Use(ALostArcPlayerCharacter* Character)
 	if (Super::Use(Character))
 	{
 		auto StatComponent = Character->StatComponent;
-		StatComponent->AddBonusAttribute(EAttributeType::ATK, Value);
+		StatComponent->AddBonusAttribute(AtbType, Value);
 		return true;
 	}
 	
@@ -33,12 +33,12 @@ void ULostArcItemEquip_Earrings::Equipment(ALostArcPlayerCharacter* Character)
 {
 	Super::Equipment(Character);
 	auto StatComponent = Character->StatComponent;
-	StatComponent->AddBonusAttribute(EAttributeType::ATK, Value);
+	StatComponent->AddBonusAttribute(AtbType, Value);
 }
 
 void ULostArcItemEquip_Earrings::Dismount(ALostArcPlayerCharacter* Character)
 {
 	Super::Dismount(Character);
 	auto StatComponent = Character->StatComponent;
-	StatComponent->AddBonusAttribute(EAttributeType::ATK, -Value);
+	StatComponent->AddBonusAttribute(AtbType, -Value);
 }

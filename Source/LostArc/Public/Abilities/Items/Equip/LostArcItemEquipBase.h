@@ -4,13 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "Abilities/Items/LostArcItemBase.h"
-#include "Component/LostArcInventoryComponent.h"
 #include "Component/LostArcCharacterEquipComponent.h"
 #include "LostArcItemEquipBase.generated.h"
-
-
-
-
 
 UCLASS()
 class LOSTARC_API ULostArcItemEquipBase : public ULostArcItemBase
@@ -22,9 +17,11 @@ public:
 	virtual bool Use(ALostArcPlayerCharacter* Character) override;
 	virtual void Equipment(ALostArcPlayerCharacter* Character) {}
 	virtual void Dismount(ALostArcPlayerCharacter* Character) {}
+	virtual void ItemConstruct() override;
 	
 	EAccessoryType GetAcType() const { return AcType; }
-	
+
 protected:
 	EAccessoryType AcType;
+	
 };

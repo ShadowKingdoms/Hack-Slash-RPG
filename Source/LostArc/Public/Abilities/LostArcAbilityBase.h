@@ -25,6 +25,8 @@ public:
 	virtual bool AbilityStateCheck(ALostArcPlayerCharacter* Character) PURE_VIRTUAL(ULostArcAbilityBase::AbilityStateCheck, return false;);
 	
 	UTexture2D* GetAbility_Icon() { return Ability_Icon; }
+
+	UFUNCTION(BlueprintCallable)
 	float GetCDTime() { return CoolDown; }
 
 	UFUNCTION(BlueprintCallable)

@@ -228,8 +228,7 @@ void ULostArcInventoryComponent::AddPickupItem(FString ItemName, int32 ItemCount
 				if (InventorySlot[i] == nullptr)
 				{
 					InventorySlot[i] = NewObject<ULostArcItemBase>(this, ItemTable.Find(ItemName)->Get());
-					auto EquipItem = Cast<ULostArcItemEquipBase>(InventorySlot[i]);
-					
+					InventorySlot[i]->ItemConstruct();
 					InvenSlotUpdate.Broadcast(i);
 
 					const auto StringName = InventorySlot[i]->GetName();
