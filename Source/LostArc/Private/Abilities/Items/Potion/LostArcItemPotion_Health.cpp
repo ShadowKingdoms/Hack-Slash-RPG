@@ -19,6 +19,6 @@ bool ULostArcItemPotion_Health::Consumed(ALostArcPlayerCharacter* Character)
 {
 	auto StatComponent = Character->StatComponent;
 	StatComponent->SetCurrentAttributeValue(EAttributeType::HP, FMath::Clamp(StatComponent->GetCurrentAttributeValue(EAttributeType::HP) + Value, 1.f, StatComponent->GetMaxAttributeValue(EAttributeType::HP)));
-
+	
 	return Super::Consumed(Character);
 }

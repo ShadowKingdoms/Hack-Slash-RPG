@@ -29,6 +29,9 @@ public:
 
 	UFUNCTION(BlueprintImplementableEvent)
 	void OnPlayerTakeDamage(float Damage);
+
+	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable)
+	void CharacterConsumeEffect();
 	
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Component)
 	class ULostArcCharacterStatComponent* StatComponent;
