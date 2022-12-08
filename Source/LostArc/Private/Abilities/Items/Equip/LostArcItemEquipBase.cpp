@@ -19,6 +19,13 @@ ULostArcItemEquipBase::ULostArcItemEquipBase(const FObjectInitializer& ObjectIni
 bool ULostArcItemEquipBase::Use(ALostArcPlayerCharacter* Character)
 {
 	Character->EquipComponent->SetAbility(this);
+	
+	const UEnum* EnumPtr = FindObject<UEnum>(ANY_PACKAGE, TEXT("EAttributeType"), true);
+	const FString StringVariable = EnumPtr->GetNameStringByValue(static_cast<int64>(AtbType));
+	UE_LOG(LogTemp, Warning, TEXT("%s : , %f"), *StringVariable, Value);
+
+	Character->CharacterEquipmentEffect(StringVariable, Value);
+	
 	return true;
 }
 
@@ -30,9 +37,6 @@ void ULostArcItemEquipBase::ItemConstruct()
 		
 		const auto EType = FMath::RandRange(2, 4);
 		AtbType = static_cast<EAttributeType>(EType);
-		
-		// const UEnum* EnumPtr = FindObject<UEnum>(ANY_PACKAGE, TEXT("EAttributeType"), true);
-		// const auto Str = EnumPtr->GetNameByValue(AtbType); // Enum to FName
 	}
 
 	else

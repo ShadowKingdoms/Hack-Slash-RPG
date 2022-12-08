@@ -32,6 +32,10 @@ public:
 
 	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable)
 	void CharacterConsumeEffect();
+
+	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable)
+	void CharacterEquipmentEffect(const FString& Name, float Value);
+	
 	
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Component)
 	class ULostArcCharacterStatComponent* StatComponent;
