@@ -22,11 +22,17 @@ bool ULostArcItemEquipBase::Use(ALostArcPlayerCharacter* Character)
 	
 	const UEnum* EnumPtr = FindObject<UEnum>(ANY_PACKAGE, TEXT("EAttributeType"), true);
 	const FString StringVariable = EnumPtr->GetNameStringByValue(static_cast<int64>(AtbType));
-	UE_LOG(LogTemp, Warning, TEXT("%s : , %f"), *StringVariable, Value);
-
-	Character->CharacterEquipmentEffect(StringVariable, Value);
 	
+	Character->CharacterEquipmentEffect(StringVariable, Value);
 	return true;
+}
+
+void ULostArcItemEquipBase::Equipment(ALostArcPlayerCharacter* Character)
+{
+	const UEnum* EnumPtr = FindObject<UEnum>(ANY_PACKAGE, TEXT("EAttributeType"), true);
+	const FString StringVariable = EnumPtr->GetNameStringByValue(static_cast<int64>(AtbType));
+	
+	Character->CharacterEquipmentEffect(StringVariable, Value);
 }
 
 void ULostArcItemEquipBase::ItemConstruct()
