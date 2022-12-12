@@ -21,6 +21,7 @@ bool ULostArcItemPotionBase::Use(ALostArcPlayerCharacter* Character)
 {
 	if (Super::Use(Character))
 	{
+		
 		return Consumed(Character);
 	}
 	
