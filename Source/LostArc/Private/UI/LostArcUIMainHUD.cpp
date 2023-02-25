@@ -23,9 +23,11 @@ void ULostArcUIMainHUD::EnableWidget(ESlotType EType)
 	{
 	case ESlotType::Inven:
 		BP_Inven->GetVisibility() == ESlateVisibility::Visible ? BP_Inven->SetVisibility(ESlateVisibility::Hidden) : BP_Inven->SetVisibility(ESlateVisibility::Visible); 
+		OnInventoryToggleEffect();
 		break;
 	case ESlotType::Equip:
 		BP_Equip->GetVisibility() == ESlateVisibility::Visible ? BP_Equip->SetVisibility(ESlateVisibility::Hidden) : BP_Equip->SetVisibility(ESlateVisibility::Visible); 
+		OnEquipmentToggleEffect();
 		break;
 	default:
 		break;

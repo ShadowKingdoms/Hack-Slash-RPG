@@ -19,6 +19,12 @@ public:
 	virtual void NativeConstruct() override;
 	virtual void NativePreConstruct() override;
 	virtual bool NativeOnDrop(const FGeometry& InGeometry, const FDragDropEvent& InDragDropEvent, UDragDropOperation* InOperation) override;
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void OnInventoryToggleEffect();
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void OnEquipmentToggleEffect();
 	
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, meta = (BindWidget))
 	class ULostArcUIProgressBar* BP_HPBAR;
