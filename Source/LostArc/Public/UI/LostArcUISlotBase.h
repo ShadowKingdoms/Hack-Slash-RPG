@@ -27,6 +27,15 @@ public:
 	void SetSlotType(ESlotType Type) { SlotType = Type; }
 	UActorComponent* GetSlotComponent() {return SlotComponent;}
 
+	UFUNCTION(BlueprintImplementableEvent)
+	void SlotDragEffect();
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void SlotDropEffect();
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void QuickSlotDragEffect();
+
 protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, meta = (BindWidget, AllowPrivateAccess = true))
 	class UImage* Image_Slot;

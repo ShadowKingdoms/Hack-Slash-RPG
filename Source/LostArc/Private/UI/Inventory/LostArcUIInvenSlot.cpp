@@ -28,6 +28,7 @@ bool ULostArcUIInvenSlot::NativeOnDrop(const FGeometry& InGeometry, const FDragD
 		
 		if (Interface != nullptr)
 		{
+			SlotDropEffect();
 			Interface->SwappingSlot(Owner->SlotIndex, this->SlotIndex, Owner->SlotComponent);
 			return true;
 		}
@@ -50,12 +51,14 @@ FReply ULostArcUIInvenSlot::NativeOnMouseButtonDown(const FGeometry& InGeometry,
 		{
 			if(APlayer->InventoryComponent->InventorySlotEmptyCheck()) // 인벤토리가 한 칸 이상 비었을 경우에는
 			{
+				SlotDropEffect();
 				return Super::NativeOnMouseButtonDown(InGeometry, InMouseEvent); // 아무 곳이나 장착 가능
 			}
 			else // 인벤토리가 꽉 찼을 경우엔
 			{
 				if(APlayer->EquipComponent->EquipSlotEmptyCheck(EquipData)) // 해당 장비 슬롯이 하나 이상 비었을 때만 장착 가능
 				{
+					SlotDropEffect();
 					return Super::NativeOnMouseButtonDown(InGeometry, InMouseEvent);
 				}
 			}

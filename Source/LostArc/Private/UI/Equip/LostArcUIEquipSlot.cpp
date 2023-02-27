@@ -26,6 +26,7 @@ bool ULostArcUIEquipSlot::NativeOnDrop(const FGeometry& InGeometry, const FDragD
 		
 		if (Interface != nullptr)
 		{
+			SlotDropEffect();
 			Interface->SwappingSlot(Owner->SlotIndex, this->SlotIndex, Owner->SlotComponent);
 			return true;
 		}
@@ -63,6 +64,7 @@ FReply ULostArcUIEquipSlot::NativeOnMouseButtonDown(const FGeometry& InGeometry,
 		
 		if(APlayer->InventoryComponent->InventorySlotEmptyCheck()) // 인벤토리가 비었을 경우에만 장착 해제 
 		{
+			SlotDropEffect();
 			return Super::NativeOnMouseButtonDown(InGeometry, InMouseEvent);
 		}
 	}

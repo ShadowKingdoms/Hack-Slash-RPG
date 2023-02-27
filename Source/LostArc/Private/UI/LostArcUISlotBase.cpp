@@ -61,6 +61,7 @@ FReply ULostArcUISlotBase::NativeOnMouseButtonDown(const FGeometry& InGeometry, 
 		{
 			if (!GetOwningPlayer()->GetWorldTimerManager().IsTimerActive(SlotData->AbilityCDProperty.Key))
 			{
+				QuickSlotDragEffect();
 				reply = UWidgetBlueprintLibrary::DetectDragIfPressed(InMouseEvent, this, EKeys::LeftMouseButton); // 드래그 시작
 			}
 		}
@@ -72,6 +73,7 @@ FReply ULostArcUISlotBase::NativeOnMouseButtonDown(const FGeometry& InGeometry, 
 void ULostArcUISlotBase::NativeOnDragDetected(const FGeometry& InGeometry, const FPointerEvent& InMouseEvent, UDragDropOperation*& OutOperation)
 {
 	Super::NativeOnDragDetected(InGeometry, InMouseEvent, OutOperation);
+	
 	// 드래그 이미지 크기 조절
 	if (OutOperation == nullptr)
 	{
@@ -115,6 +117,8 @@ void ULostArcUISlotBase::NativeOnDragDetected(const FGeometry& InGeometry, const
 		oper->SlotIndex = this->SlotIndex;
 		oper->SlotType = this->SlotType;
 		OutOperation = oper;
+
+		SlotDragEffect();
 	}
 }
 
@@ -137,6 +141,7 @@ bool ULostArcUISlotBase::NativeOnDrop(const FGeometry& InGeometry, const FDragDr
 		{
 			Interface->SwappingSlot(Owner->SlotIndex, this->SlotIndex); // 내수용 스왑
 		}
+		SlotDropEffect();
 		return true;
 	}
 	
