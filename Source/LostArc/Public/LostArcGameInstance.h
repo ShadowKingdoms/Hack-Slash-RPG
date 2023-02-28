@@ -44,8 +44,16 @@ public:
 	virtual void Init() override;
 	FArcCharacterStatData* GetArcCharacterStatData(int32 Level);
 
-private:
+	UFUNCTION(BlueprintCallable)
+	void PlusKillCount();
 
+	UFUNCTION(BlueprintCallable)
+	int32 GetKillCount();
+
+private:
 	UPROPERTY()
 	UDataTable* ArcCharacterStatTable;
+
+	UPROPERTY()
+	int32 KillCount;
 };
