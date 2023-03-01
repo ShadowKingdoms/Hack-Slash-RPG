@@ -35,6 +35,9 @@ public:
 	
 	UFUNCTION(BlueprintImplementableEvent)
 	void DropPickupItem();
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void MonsterHPWidgetHiddenEvent();
 	
 	virtual void ToggleHPBarWidget(bool bVisibility);
 	float GetMonsterDetectRadius() { return MonsterDetectRadius; }

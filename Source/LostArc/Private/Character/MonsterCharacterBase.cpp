@@ -54,6 +54,7 @@ float AMonsterCharacterBase::TakeDamage(float DamageAmount, FDamageEvent const& 
 		if(MonsterTempHP <= 0.f)
 		{
 			MonsterAnim->SetDeadAnim();
+			MonsterHPWidgetHiddenEvent();
 			SetActorEnableCollision(false);
 			DropPickupItem();
 			GetController()->Destroyed();
