@@ -19,7 +19,7 @@ public:
 	virtual bool Use(ALostArcPlayerCharacter* Character) override;
 	virtual void HitDetection(ALostArcPlayerCharacter* Character) override;
 
-private:
+protected:
 	UPROPERTY()
 	AActor* isEffect;
 };
