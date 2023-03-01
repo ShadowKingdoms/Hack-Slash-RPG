@@ -68,15 +68,15 @@ void ULostArcCharacterAbilityComponent::AbilityCancel()
 
 void ULostArcCharacterAbilityComponent::PlayInteraction()
 {
-	auto ACharacter = Cast<ALostArcPlayerCharacter>(GetOwner());
+	const auto ACharacter = Cast<ALostArcPlayerCharacter>(GetOwner());
 	
 	if(!ULostArcSkillBase::bAnimationRunning)
 	{
 		if(ItemBoxPtr != nullptr)
 		{
-			CharacterRotateToCursor();
 			ULostArcSkillBase::bAnimationRunning = true;
 			ACharacter->PlayAnimMontage(ACharacter->AnimInstance->PlayerInteraction_Montage);
+			CharacterRotateToCursor();
 		}
 	}
 }
