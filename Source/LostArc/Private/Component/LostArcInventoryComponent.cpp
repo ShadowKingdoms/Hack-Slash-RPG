@@ -28,6 +28,9 @@ void ULostArcInventoryComponent::InitializeComponent()
 void ULostArcInventoryComponent::BeginPlay()
 {
 	Super::BeginPlay();
+
+	AddPickupItem("Potion_Health",3);
+	AddPickupItem("Potion_Mana",3);
 }
 void ULostArcInventoryComponent::EndPlay(EEndPlayReason::Type EndPlayReason)
 {
@@ -150,7 +153,6 @@ ULostArcAbilityBase* ULostArcInventoryComponent::GetAbility(int32 SlotIndex, boo
 			InvenSlotUpdate.Broadcast(SlotIndex);
 			return TransUnit;
 		}
-	
 		return nullptr;
 	}
 	else
