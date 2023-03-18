@@ -23,6 +23,7 @@ public:
 	class UMonsterBaseAnimInstance* GetMonsterAnim() { return MonsterAnim; }
 	virtual float GetBasicAttackRange();
 	virtual void MonsterAttack();
+	bool GetIsAttacking() const { return bIsAttacking; }
 	
 	UFUNCTION()
 	virtual void OnAttackMontageEnded(UAnimMontage* Montage, bool bInterrupted);
@@ -40,7 +41,7 @@ public:
 	void MonsterHPWidgetHiddenEvent();
 	
 	virtual void ToggleHPBarWidget(bool bVisibility);
-	float GetMonsterDetectRadius() { return MonsterDetectRadius; }
+	float GetMonsterDetectRadius() const { return MonsterDetectRadius; }
 	
 	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable)
 	void MonsterExtinctionEffects();
@@ -81,4 +82,7 @@ protected:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = UI, meta = (AllowPrivateAccess = true))
 	class UWidgetComponent* HPBarWidget;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = true))
+	bool bIsAttacking = false;
 };

@@ -58,7 +58,7 @@ float AMonsterCharacterBase::TakeDamage(float DamageAmount, FDamageEvent const& 
 			SetActorEnableCollision(false);
 			DropPickupItem();
 			GetController()->Destroyed();
-		} 
+		}	
 	}
 	
 	return FFinalDamage;
@@ -71,6 +71,8 @@ float AMonsterCharacterBase::GetBasicAttackRange()
 
 void AMonsterCharacterBase::MonsterAttack()
 {
+	bIsAttacking = true;
+	OnBasicAttackEnd.AddLambda([this]()->void { bIsAttacking = false; });
 	MonsterAnim->PlayAttackMontage();
 }
 

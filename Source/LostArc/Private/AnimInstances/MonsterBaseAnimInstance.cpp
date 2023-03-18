@@ -9,7 +9,7 @@ UMonsterBaseAnimInstance::UMonsterBaseAnimInstance()
 
 void UMonsterBaseAnimInstance::PlayAttackMontage()
 {
-	auto Index = FMath::RandRange(0, GetBasicAttackMontageSize() - 1);
+	const auto Index = FMath::RandRange(0, GetBasicAttackMontageSize() - 1);
 	Montage_Play(MonsterBasicAttackMontages[Index], 1.f);
 }
 
