@@ -23,7 +23,6 @@ public:
 	class UMonsterBaseAnimInstance* GetMonsterAnim() { return MonsterAnim; }
 	virtual float GetBasicAttackRange();
 	virtual void MonsterAttack();
-	bool GetIsAttacking() const { return bIsAttacking; }
 	
 	UFUNCTION()
 	virtual void OnAttackMontageEnded(UAnimMontage* Montage, bool bInterrupted);
@@ -82,7 +81,4 @@ protected:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = UI, meta = (AllowPrivateAccess = true))
 	class UWidgetComponent* HPBarWidget;
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = true))
-	bool bIsAttacking = false;
 };

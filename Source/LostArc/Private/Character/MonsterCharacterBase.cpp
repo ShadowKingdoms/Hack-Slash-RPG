@@ -71,8 +71,6 @@ float AMonsterCharacterBase::GetBasicAttackRange()
 
 void AMonsterCharacterBase::MonsterAttack()
 {
-	bIsAttacking = true;
-	OnBasicAttackEnd.AddLambda([this]()->void { bIsAttacking = false; });
 	MonsterAnim->PlayAttackMontage();
 }
 
