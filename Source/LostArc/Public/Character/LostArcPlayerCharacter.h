@@ -35,6 +35,9 @@ public:
 
 	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable)
 	void CharacterEquipmentEffect(const FString& Name, float Value);
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void SpawnCursor_Decal(FHitResult Hit);
 	
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Component)
 	class ULostArcCharacterStatComponent* StatComponent;

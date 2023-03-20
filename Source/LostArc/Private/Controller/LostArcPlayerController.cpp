@@ -19,12 +19,6 @@ ALostArcPlayerController::ALostArcPlayerController()
 	{
 		MainHUDClass = UI_HUD_C.Class;
 	}
-
-	static ConstructorHelpers::FObjectFinder<UBlueprint> BP_DECAL(TEXT("Blueprint'/Game/BluePrint/Player/BP_Cursor_Decal.BP_Cursor_Decal'"));
-	if (BP_DECAL.Object)
-	{
-		Cursor_Decal = BP_DECAL.Object->GeneratedClass;
-	}
 }
 
 void ALostArcPlayerController::SetupInputComponent()
@@ -107,17 +101,11 @@ void ALostArcPlayerController::OnSetDestinationPressed()
 		const auto Char = Cast<ALostArcPlayerCharacter>(GetCharacter());
 		Char->AbilityComponent->AbilityCancel();
 		bMoveToMouseCursor = true;
-
+		
 		FHitResult Hit;
 		GetHitResultUnderCursor(ECC_Visibility, false, Hit);
 		if(Hit.bBlockingHit)
-		{
-			if(IsValid(DecalActor))
-			{
-				DecalActor->Destroy();
-			}
-			DecalActor = GetWorld()->SpawnActor<AActor>(Cursor_Decal, Hit.Location, FRotator(0.f,0.f,0.f));
-		}
+			Char->SpawnCursor_Decal(Hit);
 	}
 }
 

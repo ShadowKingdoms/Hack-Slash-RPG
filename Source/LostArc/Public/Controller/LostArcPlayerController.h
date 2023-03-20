@@ -54,11 +54,7 @@ private:
 	/* Changing the Camera position according to the mouse wheel */
 	TPair<bool, bool> bCameraSit;
 	FTimerHandle CameraZoomTimer;
-	TSubclassOf<AActor> Cursor_Decal;
-
-	UPROPERTY()
-	AActor* DecalActor;
-
+	
 	void CameraPositionChange(bool bWheel);
 };
 
