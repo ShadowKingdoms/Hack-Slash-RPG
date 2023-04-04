@@ -10,4 +10,4 @@
 
 
 # 영 상
-[![Watch the video](https://user-images.githubusercontent.com/55690757/229802279-fcc474ba-05ea-473a-9e55-606aaae3faa9.png)](https://youtu.be/bXviHHXhk4w)
+[![Watch the video](https://user-images.githubusercontent.com/55690757/229802937-a0548f47-e496-413e-84ba-18af80ed2017.png)](https://youtu.be/bXviHHXhk4w)
