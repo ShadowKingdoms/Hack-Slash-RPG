@@ -8,11 +8,6 @@
 ![pic4](https://user-images.githubusercontent.com/55690757/84866918-5a5f8500-b0b5-11ea-86b1-57cd4b4e6ac8.jpg)
 ![pic5](https://user-images.githubusercontent.com/55690757/84866923-5c294880-b0b5-11ea-88c9-aa1e42d742ba.jpg)
 
-# 후 기
-실제 DB와 연동되는 어플리케이션을 제작하면서 자바와 안드로이드 구조에 대해 살펴볼 수 있었고
-게임 핵심 로직인 시간에 맞춰 무작위의 단어가 랜덤으로 나열되는 방법과 점수를 확득할 때 가중치를 부여하는 공식 등을 설계하면서 
-이러한 류의 게임이 돌아가는 알고리즘을 직접 설계해보고 끝내 성공적으로 무사히 구현할 수 있었기에 좋은 경험이 된 프로젝트였던 것 같습니다.
-
 
 # 영 상
 [![Watch the video](https://user-images.githubusercontent.com/55690757/85986631-88cf4f80-ba27-11ea-96fd-3fed904f38f1.JPG)](https://youtu.be/bXviHHXhk4w)
