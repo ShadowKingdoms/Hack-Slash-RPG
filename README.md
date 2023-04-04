@@ -11,3 +11,6 @@
 
 # 플레이 영상
 [![Watch the video](https://user-images.githubusercontent.com/55690757/229802937-a0548f47-e496-413e-84ba-18af80ed2017.png)](https://youtu.be/bXviHHXhk4w)
+
+# 공식 문서
+https://docs.google.com/presentation/d/1iTSLv99q9k0se8xjELLi-LbDLcINWmKmUH0e1nUGNZo/edit?usp=sharing
