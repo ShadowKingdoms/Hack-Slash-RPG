@@ -57,5 +57,3 @@ private:
 	
 	void CameraPositionChange(bool bWheel);
 };
-
-
