@@ -9,5 +9,5 @@
 ![pic5](https://user-images.githubusercontent.com/55690757/84866923-5c294880-b0b5-11ea-88c9-aa1e42d742ba.jpg)
 
 
-# 영 상
+# 플레이 영상
 [![Watch the video](https://user-images.githubusercontent.com/55690757/229802937-a0548f47-e496-413e-84ba-18af80ed2017.png)](https://youtu.be/bXviHHXhk4w)
