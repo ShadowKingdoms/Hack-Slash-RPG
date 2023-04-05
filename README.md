@@ -3,7 +3,7 @@
 
 
 # 게임 다운로드
-https://drive.google.com/file/d/1X1jmNdSIgpOH7vCiWjUaWh3zlqcI20MQ/view?usp=share_link
+https://drive.google.com/file/d/1_W7jvAnk7XGBsz4eN5fJhBued6PilkDQ/view?usp=share_link
 
 
 # 플레이 화면
