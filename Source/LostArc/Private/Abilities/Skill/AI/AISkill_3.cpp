@@ -6,7 +6,7 @@
 
 UAISkill_3::UAISkill_3(const FObjectInitializer& ObjectInitializer)
 {
-	DamageRatio = 5.0f;
+	DamageRatio = 3.0f;
 	SkillRadius.Key = 600.f;
 	SkillRadius.Value = 90.f;
 	SkillType = EAbilityType::MeleeSkill_3;

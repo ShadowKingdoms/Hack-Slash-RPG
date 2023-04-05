@@ -8,7 +8,7 @@
 
 UAISkill_4::UAISkill_4(const FObjectInitializer& ObjectInitializer)
 {
-	DamageRatio = 10.0f;
+	DamageRatio = 5.0f;
 	SkillRadius.Key = 800.f;
 	SkillRadius.Value = 360.f;
 	SkillType = EAbilityType::MeleeSkill_4;

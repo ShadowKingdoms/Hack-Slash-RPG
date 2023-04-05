@@ -1,4 +1,4 @@
--// Fill out your copyright notice in the Description page of Project Settings.
+// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "Component/LostArcCharacterStatComponent.h"
 #include "Kismet/GameplayStatics.h"
@@ -35,7 +35,8 @@ void ULostArcCharacterStatComponent::BeginPlay()
 
 	ManaRegenerationTimerDelegate.BindUFunction(this, FName("ManaRegenerationPerSecond"), IncreasedManaRegeneration);
 	GetOwner()->GetWorldTimerManager().SetTimer(ManaRegenerationTimerHandle, ManaRegenerationTimerDelegate, 2.0f, true);
-	
+
+
 	OnProgressBarChanged.Broadcast(EAttributeType::HP);
 	OnProgressBarChanged.Broadcast(EAttributeType::MP);
 	
@@ -43,6 +44,7 @@ void ULostArcCharacterStatComponent::BeginPlay()
 	{
 		OnCurrentStatUpdateDelegate.Broadcast(static_cast<EAttributeType>(Type));
 	}
+	
 }
 
 float ULostArcCharacterStatComponent::GetCurrentAttributeValue(EAttributeType Type)

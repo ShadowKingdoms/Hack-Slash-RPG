@@ -101,11 +101,14 @@ void ALostArcPlayerController::OnSetDestinationPressed()
 		const auto Char = Cast<ALostArcPlayerCharacter>(GetCharacter());
 		Char->AbilityComponent->AbilityCancel();
 		bMoveToMouseCursor = true;
-		
+
 		FHitResult Hit;
 		GetHitResultUnderCursor(ECC_Visibility, false, Hit);
+		
 		if(Hit.bBlockingHit)
+		{
 			Char->SpawnCursor_Decal(Hit);
+		}
 	}
 }
 

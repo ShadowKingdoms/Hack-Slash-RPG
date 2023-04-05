@@ -124,7 +124,7 @@ void ABossMonsterCharacter::BossMonsterAttackHitCheck()
 		{
 			if (FVector::DotProduct(direction.GetSafeNormal(), GetActorForwardVector()) > dotValue)
 			{
-				HitResult.Actor->TakeDamage(MonsterStr * 2.f, DamageEvent, GetController(), this);
+				HitResult.Actor->TakeDamage(MonsterStr * 4.f, DamageEvent, GetController(), this);
 			}
 		}
 	}
