@@ -11,7 +11,7 @@ https://drive.google.com/file/d/1_W7jvAnk7XGBsz4eN5fJhBued6PilkDQ/view?usp=share
 ![pic2](https://user-images.githubusercontent.com/55690757/229818239-c28ce111-de83-43ae-980b-3aafae2cb337.png)
 
 
-# 플레이 영상
+# 플레이 영상(링크)
 [![Watch the video](https://user-images.githubusercontent.com/55690757/229802937-a0548f47-e496-413e-84ba-18af80ed2017.png)](https://youtu.be/bXviHHXhk4w)
 
 
